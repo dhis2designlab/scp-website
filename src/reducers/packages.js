@@ -1,12 +1,12 @@
 import { packages } from '../actions/actionTypes'
 
-const initialState = []
+const initialState = null
 
 const packagesReducer = (state = initialState, action) => {
     switch (action.type) {
       case packages.fetchPackages:
         return [
-          ...state,
+          ...action.payload.results,
         ]
       default:
         return state
