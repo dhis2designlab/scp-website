@@ -7,6 +7,7 @@ import {
 import Nav from '../components/Nav'
 import Main from '../pages/Main'
 import Other from '../pages/Other'
+import PackagePage from '../pages/PackagePage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Main}/>
         <Route path='/other' component={Other}/>
+        <Route path='/packageinfo' component={PackagePage}/>
       </Switch>
     </Router>
   );

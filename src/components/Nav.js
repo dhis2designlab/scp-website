@@ -14,6 +14,9 @@ const Nav = () => {
         <li className="pure-menu-item">
           <Link className="pure-menu-link" to="/other">Other</Link>
         </li>
+        <li className="pure-menu-item">
+          <Link className="pure-menu-link" to="/packageinfo">Package info</Link>
+        </li>
       </ul>
     </div>
   )
