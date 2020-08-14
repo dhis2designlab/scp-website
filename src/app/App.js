@@ -8,6 +8,7 @@ import Nav from '../components/Nav'
 import Main from '../pages/Main'
 import Other from '../pages/Other'
 import PackagePage from '../pages/PackagePage'
+import '../stylesheets/grids-responsive-min.css'
 
 const App = () => {
   return (
