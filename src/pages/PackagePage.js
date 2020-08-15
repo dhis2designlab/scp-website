@@ -141,15 +141,18 @@ class PackagePage extends React.Component {
                                 <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                                 <h4>Last publish</h4>
                                 <p data-tip={new Date(item.collected.metadata.date)}>{months} {months > 1 ? "months" : "month"} ago</p>
-                                <h4>Collaborators</h4>
-                                <ul id="collaborators">
-                                    {collaborators.map((item) => <li key={item.username}><GithubCard username={item.username}/></li>)}
-                                </ul>
-                                
-                                <h4>Keywords</h4>
-                                <ul id="keywords">
-                                    {item.collected.metadata.keywords !== undefined ? item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>) : '-'}
-                                </ul>
+                                {collaborators.length ? <><h4>Collaborators</h4>
+                                    <ul id="collaborators">
+                                        {collaborators.map((item) => <li key={item.username}><GithubCard username={item.username} /></li>)}
+                                    </ul></> : null
+                                }
+                                {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>
+                                    <h4>Keywords</h4>
+                                    <ul id="keywords">
+                                        {item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>)}
+                                    </ul>
+                                </> : null
+                                }
                             </div>
                         </div>
                     </div>

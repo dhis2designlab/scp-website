@@ -37,7 +37,6 @@ class GithubCard extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            console.log(`Github=`, item);
             return (
                 <>
                     <a href={item.html_url} target="_blank" rel="noopener noreferrer"><img data-tip={item.login} alt="avatar" style={{ width: '40px' }} src={item.avatar_url} /></a><ReactTooltip />
