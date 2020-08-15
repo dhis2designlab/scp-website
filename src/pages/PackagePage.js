@@ -4,6 +4,8 @@ import '../stylesheets/packagepage.css';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import Prism from 'prismjs';
+import Clipboard from '../components/Clipboard';
+import ReactTooltip from 'react-tooltip';
 
 const titleStyle = {
     /* colors are for testing purpose */
@@ -32,6 +34,7 @@ class PackagePage extends React.Component {
             readme: null,
             readmeLoaded: false,
             readmeError: null,
+            name: null,
         };
     }
 
@@ -74,7 +77,7 @@ class PackagePage extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, item } = this.state;
+        const { error, isLoaded, item, name } = this.state;
         const { readme, readmeError, readmeLoaded } = this.state;
         let readmeEl;
         if (readmeLoaded) {
@@ -101,7 +104,7 @@ class PackagePage extends React.Component {
                     <div className="pure-g-r content">
                         <div className="pure-u-1-1" style={titleStyle}>
                             <div className="l-box"><h1>{item.collected.metadata.name}</h1>
-                                <span>{item.collected.metadata.version} &bull; Published {months} months ago</span>
+                                <span data-tip={new Date(item.collected.metadata.date)}>{item.collected.metadata.version} &bull; Published {months} months ago</span><ReactTooltip />
                             </div>
                         </div>
                         <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-3-5 left-column" style={leftColumnStyle}>
@@ -113,6 +116,9 @@ class PackagePage extends React.Component {
                         <div className="pure-u-1-1 pure-u-md-2-5 pure-u-lg-2-5 right-column" style={rightColumnStyle}>
                             <div className="l-box">
                                 <div className="pure-g-r">
+                                    <div className="pure-u-1-1"><h4>Install</h4>
+                                        <Clipboard value={`npm i ${name}`} />
+                                    </div>
                                     <div className="pure-u-1-2"><h4>Version</h4>
                                         <p>{item.collected.metadata.version}</p></div>
                                     <div className="pure-u-1-2"><h4>License</h4>
@@ -132,7 +138,7 @@ class PackagePage extends React.Component {
                                 <h4>Repository</h4>
                                 <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                                 <h4>Last publish</h4>
-                                <p>{months} {months > 1 ? "months" : "month"} ago</p>
+                                <p data-tip={new Date(item.collected.metadata.date)}>{months} {months > 1 ? "months" : "month"} ago</p>
                                 <h4>Keywords</h4>
                                 <ul id="keywords">
                                     {item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li>{i}</li></a>)}

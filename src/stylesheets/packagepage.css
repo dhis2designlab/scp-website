@@ -17,6 +17,10 @@
     font-size: 1.25rem;
 }
 
+.clipboard-copy {
+    resize: none;
+}
+
 ul#keywords {
     list-style-type: none;
 }
