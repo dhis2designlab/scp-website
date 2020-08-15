@@ -88,11 +88,13 @@ class PackagePage extends React.Component {
         else {
             readmeEl = <div>README loading ...</div>;
         }
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
+            console.log(`item=`, item);
             const months = Math.round(moment().diff(item.collected.metadata.date, 'months', true));
             return (
                 <>
@@ -131,6 +133,10 @@ class PackagePage extends React.Component {
                                 <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                                 <h4>Last publish</h4>
                                 <p>{months} {months > 1 ? "months" : "month"} ago</p>
+                                <h4>Keywords</h4>
+                                <ul id="keywords">
+                                    {item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li>{i}</li></a>)}
+                                </ul>
                             </div>
                         </div>
                     </div>

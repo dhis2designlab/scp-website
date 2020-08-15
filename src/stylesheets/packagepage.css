@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;600;700&display=swap');
-
 .content {
     font-family: 'Open Sans', serif;
     font-size: 1rem;
@@ -16,6 +15,10 @@
 
 .right-column p {
     font-size: 1.25rem;
+}
+
+ul#keywords {
+    list-style-type: none;
 }
 
 .left-column p {
@@ -35,8 +38,8 @@ pre {
     margin: 1em 0;
 }
 
-.markdown >h1, .markdown h2 {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+.markdown>h1, .markdown h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 8px 0 16px 0;
     padding-bottom: 8px;
 }
