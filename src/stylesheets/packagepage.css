@@ -21,8 +21,18 @@
     resize: none;
 }
 
-ul#keywords {
+.right-column ul {
     list-style-type: none;
+}
+
+.right-column ul#collaborators {
+    padding: 0;
+    margin: 0;
+}
+
+.right-column ul#collaborators li {
+    display: inline;
+    margin-left: 10px;
 }
 
 .left-column p {

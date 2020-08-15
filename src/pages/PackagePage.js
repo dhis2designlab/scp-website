@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import Prism from 'prismjs';
 import Clipboard from '../components/Clipboard';
+import GithubCard from '../components/GithubCard';
 import ReactTooltip from 'react-tooltip';
 
 const titleStyle = {
@@ -99,6 +100,8 @@ class PackagePage extends React.Component {
         } else {
             console.log(`item=`, item);
             const months = Math.round(moment().diff(item.collected.metadata.date, 'months', true));
+            const collaborators = item.collected.github.contributors.filter((collaborator, idx) => idx < 5);
+            console.log(`collaborators=`, collaborators);
             return (
                 <>
                     <div className="pure-g-r content">
@@ -134,14 +137,18 @@ class PackagePage extends React.Component {
 
                                 <h4>NPM</h4>
                                 <a href={item.collected.metadata.links.npm}>{decodeURIComponent(item.collected.metadata.links.npm)}</a>
-                                <hr />
                                 <h4>Repository</h4>
                                 <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                                 <h4>Last publish</h4>
                                 <p data-tip={new Date(item.collected.metadata.date)}>{months} {months > 1 ? "months" : "month"} ago</p>
+                                <h4>Collaborators</h4>
+                                <ul id="collaborators">
+                                    {collaborators.map((item) => <li key={item.username}><GithubCard username={item.username}/></li>)}
+                                </ul>
+                                
                                 <h4>Keywords</h4>
                                 <ul id="keywords">
-                                    {item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li>{i}</li></a>)}
+                                    {item.collected.metadata.keywords !== undefined ? item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>) : '-'}
                                 </ul>
                             </div>
                         </div>
