@@ -1,8 +1,9 @@
 import React from 'react';
-import 'purecss/build/pure.css'
+import 'purecss/build/pure.css';
 import '../stylesheets/packagepage.css';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
+import Prism from 'prismjs';
 
 const titleStyle = {
     /* colors are for testing purpose */
@@ -35,6 +36,7 @@ class PackagePage extends React.Component {
     }
 
     async componentDidMount() {
+        Prism.highlightAll();
         const name = "@material-ui/core";
         let result;
         try {
@@ -67,26 +69,8 @@ class PackagePage extends React.Component {
         }
     }
 
-    componentDidMountX() {
-        const name = "@material-ui/core";
-        fetch(`https://api.npms.io/v2/package/${encodeURIComponent(name)}`)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        item: result,
-                        name: name,
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            );
-
+    componentDidUpdate() {
+        Prism.highlightAll();
     }
 
     render() {
@@ -98,7 +82,7 @@ class PackagePage extends React.Component {
                 readmeEl = <div>Error loading readme ...</div>;
             }
             else {
-                readmeEl = <div><ReactMarkdown escapeHtml={false} source={readme}></ReactMarkdown></div>;
+                readmeEl = <div><ReactMarkdown className="markdown" escapeHtml={false} source={readme}></ReactMarkdown></div>;
             }
         }
         else {
@@ -118,7 +102,7 @@ class PackagePage extends React.Component {
                                 <span>{item.collected.metadata.version} &bull; Published {months} months ago</span>
                             </div>
                         </div>
-                        <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-3-5" style={leftColumnStyle}>
+                        <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-3-5 left-column" style={leftColumnStyle}>
                             <div className="l-box">
                                 <p>{item.collected.metadata.description}</p>
                                 {readmeEl}

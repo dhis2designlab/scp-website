@@ -9,6 +9,8 @@ import Main from '../pages/Main'
 import Other from '../pages/Other'
 import PackagePage from '../pages/PackagePage'
 import '../stylesheets/grids-responsive-min.css'
+import 'prismjs/components/prism-jsx';
+import 'prismjs/themes/prism-okaidia.css';
 
 const App = () => {
   return (
