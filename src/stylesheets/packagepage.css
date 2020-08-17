@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;600;700&display=swap');
+.content {
+    font-family: 'Open Sans', serif;
+    font-size: 1rem;
+}
+
+.l-box {
+    padding: 1.5em;
+}
+
+.right-column h3 {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.right-column p {
+    font-size: 1.25rem;
+}
+
+.clipboard-copy {
+    resize: none;
+}
+
+.right-column ul {
+    list-style-type: none;
+}
+
+.right-column ul#collaborators {
+    padding: 0;
+    margin: 0;
+}
+
+.right-column ul#collaborators li {
+    display: inline;
+    margin-left: 10px;
+}
+
+.left-column p {
+    color: rgba(0, 0, 0, .85);
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.65;
+    letter-spacing: 0.1px;
+}
+
+pre {
+    background-color: #f7f7f7;
+    display: block;
+    font-family: 'Inconsolata', monospace;
+    white-space: pre;
+    margin: 1em 0;
+}
+
+.markdown>h1, .markdown h2 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 8px 0 16px 0;
+    padding-bottom: 8px;
+}
+
+.markdown h2 {
+    letter-spacing: -0.3px;
+    line-height: 1.25;
+    font-size: 1.5rem;
+}

@@ -16,7 +16,6 @@ const Main = () => {
       <h1>Main page</h1>
       <PackageList packages={packages} />
     </div>
-    
   );
 }
 
