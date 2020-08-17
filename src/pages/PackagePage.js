@@ -99,10 +99,8 @@ class PackagePage extends React.Component {
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-            console.log(`item=`, item);
             const months = Math.round(moment().diff(item.collected.metadata.date, 'months', true));
             const collaborators = item.collected.github.contributors.filter((collaborator, idx) => idx < 5);
-            console.log(`collaborators=`, collaborators);
             return (
                 <>
                     <div className="pure-g-r content">
@@ -144,13 +142,13 @@ class PackagePage extends React.Component {
                                 <p data-tip={new Date(item.collected.metadata.date)}>{months} {months > 1 ? "months" : "month"} ago</p>
                                 {collaborators.length ? <><h4>Collaborators</h4>
                                     <ul id="collaborators">
-                                        {collaborators.map((item) => <li key={item.username}><GithubCard username={item.username} /></li>)}
+                                        {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} /></li>)}
                                     </ul></> : null
                                 }
                                 {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>
                                     <h4>Keywords</h4>
                                     <ul id="keywords">
-                                        {item.collected.metadata.keywords.map(i => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>)}
+                                        {item.collected.metadata.keywords.map((i) => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>)}
                                     </ul>
                                 </> : null
                                 }
