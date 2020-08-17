@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const PackageList = ({packages}) => {
-    if(packages === null) return (<p>Fetching packages...</p>)
+    if(packages === null) return (<p>Search for packages for them to be displayed here</p>)
 
     return(
         <ul>
