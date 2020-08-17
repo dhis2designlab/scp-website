@@ -135,7 +135,7 @@ const PackagePage = (props) => {
                             {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>
                                 <h4>Keywords</h4>
                                 <ul id="keywords">
-                                    {item.collected.metadata.keywords.map((i) => <a href={`https://www.npmjs.com/search?q=keywords:${i}`}><li key={i}>{i}</li></a>)}
+                                    {item.collected.metadata.keywords.map((i) => <li key={i}><a href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a></li>)}
                                 </ul>
                             </> : null
                             }
