@@ -1,11 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const PackageList = ({packages}) => {
     if(packages === null) return (<p>Fetching packages...</p>)
 
     return(
         <ul>
-            {packages.map(p => <li key={p.package.name}>{p.package.name}</li>)}
+            {packages.map(p => <li key={p.package.name}>
+                <Link to={{
+                    pathname: "/packageinfo",
+                    packageName: p.package.name
+                }}>{p.package.name}</Link></li>)}
         </ul>
     )
 }

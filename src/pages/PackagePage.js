@@ -40,8 +40,9 @@ class PackagePage extends React.Component {
     }
 
     async componentDidMount() {
+        const { packageName } = this.props.location
         Prism.highlightAll();
-        const name = "@material-ui/core";
+        const name = packageName !== undefined ? packageName : "@material-ui/core" 
         let result;
         try {
             const response = await fetch(`https://api.npms.io/v2/package/${encodeURIComponent(name)}`)
