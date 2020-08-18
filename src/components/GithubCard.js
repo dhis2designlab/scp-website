@@ -9,6 +9,7 @@ class GithubCard extends React.Component {
             item: null,
             username: this.props.username,
             error: null,
+            size: props.avatarSize,
         }
     }
 
@@ -30,7 +31,7 @@ class GithubCard extends React.Component {
     }
 
     render() {
-        const { error, isLoaded, item} = this.state;
+        const { error, isLoaded, item, size } = this.state;
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -39,7 +40,7 @@ class GithubCard extends React.Component {
         } else {
             return (
                 <>
-                    <a href={item.html_url} target="_blank" rel="noopener noreferrer"><img data-tip={item.login} alt="avatar" style={{ width: '40px' }} src={item.avatar_url} /></a><ReactTooltip />
+                    <a href={item.html_url} target="_blank" rel="noopener noreferrer"><img data-tip={item.login} alt="github avatar" style={size} src={item.avatar_url} /></a><ReactTooltip />
                 </>
             )
         }

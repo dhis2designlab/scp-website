@@ -128,7 +128,7 @@ const PackageInfo = (props) => {
                             <p data-tip={new Date(item.collected.metadata.date)}>{moment(item.collected.metadata.date).startOf('day').fromNow()}</p>
                             {collaborators.length ? <><h4>Collaborators</h4>
                                 <ul id="collaborators">
-                                    {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} /></li>)}
+                                    {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} avatarSize={{width:'40px'}} /></li>)}
                                 </ul></> : null
                             }
                             {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>

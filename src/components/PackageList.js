@@ -18,12 +18,13 @@ const ulStyle = {
 }
 
 const publisherStyle = {
-    margin: "1em 0 0 0"
+    margin: "1em 0 0 0",
 }
 
 const versionStyle = {
     color: "#7f7f7f",
-    fontWeight: 300
+    fontWeight: 300,
+    marginLeft:"10px",
 }
 
 const PackageList = (props) => {
@@ -42,7 +43,7 @@ const PackageList = (props) => {
                         {p.package.keywords.map((i) => <li style={liStyle} key={i}><a href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a></li>)}
                     </ul>
                 </> : null}
-                <div style={publisherStyle}><GithubCard username={p.package.publisher.username} /> <span data-tip={new Date(p.package.date)} style={versionStyle}>published {p.package.version} &bull; {moment(p.package.date).startOf('day').fromNow()}</span></div>
+                <div style={publisherStyle}><GithubCard username={p.package.publisher.username} avatarSize={{width:'22px'}} /><span data-tip={new Date(p.package.date)} style={versionStyle}>published {p.package.version} &bull; {moment(p.package.date).startOf('day').fromNow()}</span></div>
                 <ReactTooltip />
             </li>)}
         </ul>
