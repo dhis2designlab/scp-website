@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import 'purecss/build/pure.css';
-import '../stylesheets/package-info.css';
-import moment from 'moment';
-import ReactMarkdown from 'react-markdown';
-import Prism from 'prismjs';
-import Clipboard from '../components/Clipboard';
-import GithubCard from '../components/GithubCard';
-import ReactTooltip from 'react-tooltip';
+import React, { useState, useEffect } from 'react'
+import 'purecss/build/pure.css'
+import '../stylesheets/package-info.css'
+import moment from 'moment'
+import ReactMarkdown from 'react-markdown'
+import Prism from 'prismjs'
+import Clipboard from '../components/Clipboard'
+import GithubCard from '../components/GithubCard'
+import ReactTooltip from 'react-tooltip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLink, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
 
 const PackageInfo = (props) => {
     const [state, setState] = useState({
@@ -121,9 +123,9 @@ const PackageInfo = (props) => {
 
 
                             <h4>NPM</h4>
-                            <a href={item.collected.metadata.links.npm}>{decodeURIComponent(item.collected.metadata.links.npm)}</a>
+                            <FontAwesomeIcon icon={faLink} /> <a className="source-links" href={item.collected.metadata.links.npm}>{decodeURIComponent(item.collected.metadata.links.npm)}</a>
                             <h4>Repository</h4>
-                            <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
+                            <FontAwesomeIcon icon={faCodeBranch} /> <a className="source-links" href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                             <h4>Last publish</h4>
                             <p data-tip={new Date(item.collected.metadata.date)}>{moment(item.collected.metadata.date).startOf('day').fromNow()}</p>
                             {collaborators.length ? <><h4>Collaborators</h4>
