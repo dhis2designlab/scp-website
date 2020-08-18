@@ -9,7 +9,7 @@ import GithubCard from '../components/GithubCard';
 import ReactTooltip from 'react-tooltip';
 
 const PackageInfo = (props) => {
-    const [ state, setState ] = useState({
+    const [state, setState] = useState({
         packageName: null,
         packageItem: null,
         error: null,
@@ -26,19 +26,19 @@ const PackageInfo = (props) => {
     useEffect(() => {
         (async () => {
             const { packageName } = props.location
-            const name = packageName !== undefined ? packageName : "@material-ui/core" 
+            const name = packageName !== undefined ? packageName : "@material-ui/core"
             let result;
             try {
                 const response = await fetch(`https://api.npms.io/v2/package/${encodeURIComponent(name)}`)
                 result = await response.json();
-                setState((oldState)=>({
+                setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
                     item: result,
                     name: name,
                 }));
             } catch (error) {
-                setState((oldState)=>({
+                setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
                     error
@@ -47,13 +47,13 @@ const PackageInfo = (props) => {
             try {
                 const RMresponse = await fetch(`https://unpkg.com/${name}@${result.collected.metadata.version}/README.md`);
                 const RMresult = await RMresponse.text();
-                setState((oldState)=>({
+                setState((oldState) => ({
                     ...oldState,
                     readmeLoaded: true,
                     readme: RMresult,
                 }))
             } catch (error) {
-                setState((oldState)=>({
+                setState((oldState) => ({
                     ...oldState,
                     readmeLoaded: true,
                     readme: null,
@@ -61,9 +61,9 @@ const PackageInfo = (props) => {
                 }))
             }
         })();
-    });
+    }, [props.location]);
 
-    useEffect(()=>{
+    useEffect(() => {
         Prism.highlightAll();
     })
 
