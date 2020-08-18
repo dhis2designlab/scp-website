@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import ReactTooltip from 'react-tooltip';
 
 
@@ -10,52 +10,45 @@ const clipboardStyle = {
     paddingLeft: "15px",
 }
 
+const Clipboard = (props) => {
+    const [state, setState] = useState({
+        copySuccess: false,
+        value: '',
+        hovered: false,
+    });
 
-class Clipboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            copySuccess: false,
-            value: '',
-            hovered: false,
-        }
-    }
+    let textArea = useRef(null);
 
-    copyTextToClipboard = () => {
-        const element = this.textArea;
-        element.select();
+    const copyTextToClipboard = () => {
+        textArea.select();
         document.execCommand("copy");
-        this.setState({ copySuccess: true });
+        setState((oldState) => ({ copySuccess: true }));
     }
 
-    changeBackground = (e) => {
-        if (!this.state.hovered) {
+    const changeBackground = (e) => {
+        if (!state.hovered) {
             e.target.style.background = '#dbffdb';
             e.target.style.border = '1px solid #00c642'
-            this.setState({ hovered: true });
+            setState((oldState) => ({ hovered: true }));
         } else {
             e.target.style.background = '';
             e.target.style.border = '';
-            this.setState({ hovered: false });
+            setState((oldState) => ({ hovered: false }));
         }
-
     }
 
-    render() {
-        return (
-            <>
-                <div>
-                    <textarea data-tip="Click to copy command to clipboard" style={clipboardStyle} readOnly value={this.props.value}
-                        onMouseOver={(e) => this.changeBackground(e)}
-                        onMouseLeave={(e) => this.changeBackground(e)}
-                        onClick={() => this.copyTextToClipboard()}
-                        ref={(textarea) => this.textArea = textarea}
-                    /> <ReactTooltip />
-                </div>
-            </>
-        )
-    }
-
+    return (
+        <>
+            <div>
+                <textarea data-tip="Click to copy command to clipboard" style={clipboardStyle} readOnly value={props.value}
+                    onMouseOver={(e) => changeBackground(e)}
+                    onMouseLeave={(e) => changeBackground(e)}
+                    onClick={() => copyTextToClipboard()}
+                    ref={(textarea) => textArea = textarea}
+                /> <ReactTooltip />
+            </div>
+        </>
+    )
 }
 
 export default Clipboard;
