@@ -9,7 +9,7 @@ const liStyle = {
     margin: "0 5px 0 0",
     padding: "5px",
     backgroundColor: "#f2f2f2",
-    borderRadius: "4px",
+    borderRadius: "4px"
 }
 
 const ulStyle = {
@@ -23,7 +23,7 @@ const publisherStyle = {
 
 const versionStyle = {
     color: "#7f7f7f",
-    fontWeight: 300,
+    fontWeight: 300
 }
 
 const PackageList = (props) => {

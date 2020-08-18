@@ -86,14 +86,13 @@ const PackageInfo = (props) => {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
-        const months = Math.round(moment().diff(item.collected.metadata.date, 'months', true));
         const collaborators = item.collected.github.contributors.filter((collaborator, idx) => idx < 5);
         return (
             <>
                 <div className="pure-g-r content">
                     <div className="pure-u-1-1">
                         <div className="l-box"><h1>{item.collected.metadata.name}</h1>
-                            <span data-tip={new Date(item.collected.metadata.date)}>{item.collected.metadata.version} &bull; Published {months} months ago</span><ReactTooltip />
+                            <span data-tip={new Date(item.collected.metadata.date)}>{item.collected.metadata.version} &bull; Published {moment(item.collected.metadata.date).startOf('day').fromNow()}</span><ReactTooltip />
                         </div>
                     </div>
                     <div className="pure-u-1-1 pure-u-md-3-5 pure-u-lg-3-5 left-column">
@@ -126,7 +125,7 @@ const PackageInfo = (props) => {
                             <h4>Repository</h4>
                             <a href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
                             <h4>Last publish</h4>
-                            <p data-tip={new Date(item.collected.metadata.date)}>{months} {months > 1 ? "months" : "month"} ago</p>
+                            <p data-tip={new Date(item.collected.metadata.date)}>{moment(item.collected.metadata.date).startOf('day').fromNow()}</p>
                             {collaborators.length ? <><h4>Collaborators</h4>
                                 <ul id="collaborators">
                                     {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} /></li>)}
