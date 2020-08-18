@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'purecss/build/pure.css';
-import '../stylesheets/packagepage.css';
+import '../stylesheets/package-info.css';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import Prism from 'prismjs';
@@ -8,7 +8,7 @@ import Clipboard from '../components/Clipboard';
 import GithubCard from '../components/GithubCard';
 import ReactTooltip from 'react-tooltip';
 
-const PackagePage = (props) => {
+const PackageInfo = (props) => {
     const [ state, setState ] = useState({
         packageName: null,
         packageItem: null,
@@ -61,7 +61,7 @@ const PackagePage = (props) => {
                 }))
             }
         })();
-    }, []);
+    });
 
     useEffect(()=>{
         Prism.highlightAll();
@@ -147,4 +147,4 @@ const PackagePage = (props) => {
     }
 }
 
-export default PackagePage;
+export default PackageInfo;

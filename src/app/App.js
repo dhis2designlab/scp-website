@@ -7,7 +7,7 @@ import {
 import Nav from '../components/Nav'
 import Main from '../pages/Main'
 import Other from '../pages/Other'
-import PackagePage from '../pages/PackagePage'
+import PackageInfo from '../pages/PackageInfo'
 import '../stylesheets/grids-responsive-min.css'
 import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism-okaidia.css';
@@ -19,7 +19,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Main}/>
         <Route path='/other' component={Other}/>
-        <Route path='/packageinfo' component={PackagePage}/>
+        <Route path='/packageinfo' component={PackageInfo}/>
       </Switch>
     </Router>
   );

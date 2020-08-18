@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
@@ -14,6 +14,8 @@ const searchFieldStyle = {
     height: "100%",
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+    borderTopRightRadius: "4px",
+    borderBottomRightRadius: "4px",
   }
 }
 
