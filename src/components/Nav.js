@@ -12,6 +12,9 @@ const Nav = () => {
           <Link className="pure-menu-link" to="/">Home</Link>
         </li>
         <li className="pure-menu-item">
+          <Link className="pure-menu-link" to="/landing">Landing</Link>
+        </li>
+        <li className="pure-menu-item">
           <Link className="pure-menu-link" to="/other">Other</Link>
         </li>
         <li className="pure-menu-item">
