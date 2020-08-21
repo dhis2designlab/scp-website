@@ -5,29 +5,14 @@ import '../stylesheets/main.css';
 import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
 
-const searchFieldStyle = {
-  input: {
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  button: {
-    height: "100%",
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-    borderTopRightRadius: "4px",
-    borderBottomRightRadius: "4px",
-  }
-}
-
-
 const packageListStyle = {
   item: {
-    height: "100%",
-    minHeight: "180px",
-    borderBottom: "1px solid #f2f2f2"
+    height: '100%',
+    minHeight: '180px',
+    borderBottom: '1px solid #f2f2f2'
   },
   description: {
-    color: "gray",
+    color: 'gray',
   }
 }
 
@@ -42,7 +27,7 @@ const Main = () => {
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1 search">
           <div className="l-box">
-            <SearchField style={searchFieldStyle} />
+            <SearchField searchButtonText="Search"/>
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1">

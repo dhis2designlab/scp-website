@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import SearchField from '../components/SearchField'
 import 'purecss/build/pure.css'
 import '../stylesheets/landing.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const landingStyle = {
     searchBox: {
@@ -22,11 +24,11 @@ const searchFieldStyle = {
         borderBottomRightRadius: 0,
     },
     button: {
-        height: "100%",
+        height: '100%',
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
-        borderTopRightRadius: "4px",
-        borderBottomRightRadius: "4px",
+        borderTopRightRadius: '4px',
+        borderBottomRightRadius: '4px',
     }
 }
 
@@ -42,7 +44,7 @@ const Landing = () => {
         <div className="landing" style={landingStyle.page}>
             <div className="pure-g-r content">
                 <div className="search-box l-box" style={landingStyle.searchBox}>
-                    <SearchField style={searchFieldStyle} />
+                    <SearchField style={searchFieldStyle} searchButtonText={<FontAwesomeIcon icon={faSearch}/>} />
                 </div>
             </div>
         </div>
