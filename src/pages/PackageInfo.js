@@ -26,6 +26,7 @@ const PackageInfo = (props) => {
     const { readme, readmeError, readmeLoaded } = state;
 
     useEffect(() => {
+        let isCancelled = false;
         (async () => {
             const { packageName } = props.location
             const name = packageName !== undefined ? packageName : "@material-ui/core"
@@ -33,14 +34,14 @@ const PackageInfo = (props) => {
             try {
                 const response = await fetch(`https://api.npms.io/v2/package/${encodeURIComponent(name)}`)
                 result = await response.json();
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
                     item: result,
                     name: name,
                 }));
             } catch (error) {
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
                     error
@@ -49,13 +50,13 @@ const PackageInfo = (props) => {
             try {
                 const RMresponse = await fetch(`https://unpkg.com/${name}@${result.collected.metadata.version}/README.md`);
                 const RMresult = await RMresponse.text();
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     readmeLoaded: true,
                     readme: RMresult,
                 }))
             } catch (error) {
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     readmeLoaded: true,
                     readme: null,
@@ -63,6 +64,9 @@ const PackageInfo = (props) => {
                 }))
             }
         })();
+        return () => {
+            isCancelled = true;
+        };
     }, [props.location]);
 
     useEffect(() => {

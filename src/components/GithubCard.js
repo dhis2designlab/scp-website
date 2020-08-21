@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import React, { useEffect, useState } from 'react'
+import ReactTooltip from 'react-tooltip'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserSlash } from '@fortawesome/free-solid-svg-icons'
 
 const GithubCard = (props) => {
     const [state, setState] = useState({
@@ -8,30 +10,37 @@ const GithubCard = (props) => {
         username: props.username,
         error: null,
         size: props.avatarSize,
+        status: null,
     });
 
     useEffect(() => {
+        let isCancelled = false;
         (async () => {
             let result;
             try {
                 const response = await fetch(`https://api.github.com/users/${state.username}`);
+                
                 result = await response.json();
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
+                    status: response.status,
                     item: result,
                 }));
             } catch (error) {
-                setState((oldState) => ({
+                !isCancelled && setState((oldState) => ({
                     ...oldState,
                     isLoaded: true,
                     error
                 }));
             }
         })();
+        return () => {
+            isCancelled = true;
+        };
     }, [state.username]);
 
-    const { error, isLoaded, item, size } = state;
+    const { error, isLoaded, item, size, status } = state;
 
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -40,7 +49,11 @@ const GithubCard = (props) => {
     } else {
         return (
             <>
-                <a href={item.html_url} target="_blank" rel="noopener noreferrer"><img data-tip={item.login} alt="github avatar" style={size} src={item.avatar_url} /></a><ReactTooltip />
+                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
+                    {status === 404 ? <FontAwesomeIcon icon={faUserSlash}/>
+                        : <img data-tip={item.login} alt="github avatar" style={size} src={item.avatar_url} />}
+                </a>
+                <ReactTooltip />
             </>
         )
     }

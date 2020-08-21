@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { getPackages } from '../actions/npms'
 import 'purecss/build/pure.css'
 
 const searchFieldStyle = {
@@ -19,13 +17,21 @@ const searchFieldStyle = {
 }
 
 const SearchField = (props) => {
-    const { style } = props;
-    const [inputValue, setInputValue] = useState('')
+    const style = props.style || searchFieldStyle;
+    const [inputValue, setInputValue] = useState('');
+    /*
+
     const dispatch = useDispatch();
     const onSearch = (e) => {
         console.log(inputValue)
         e.preventDefault()
         dispatch(getPackages(inputValue))
+    }
+    */
+
+    const onClick = (e) => {
+        e.preventDefault()
+        props.onSearch(inputValue);
     }
 
     const handleChange = (e) => {
@@ -35,8 +41,8 @@ const SearchField = (props) => {
     return (
         <form className="pure-form pure-g">
             <div className="pure-u-1">
-                <input id="search" type="text" style={searchFieldStyle.input} className="pure-input-2-3" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
-                <button type="submit" style={searchFieldStyle.button} className="pure-button pure-button-primary" onClick={onSearch}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
+                <input id="search" type="text" style={style.input} className="pure-input-2-3" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
+                <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
             </div>
         </form>
     )

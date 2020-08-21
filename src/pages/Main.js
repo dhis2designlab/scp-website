@@ -4,6 +4,9 @@ import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
+import { useDispatch } from 'react-redux'
+import { getPackages } from '../actions/npms'
+
 
 const packageListStyle = {
   item: {
@@ -18,7 +21,11 @@ const packageListStyle = {
 
 const Main = () => {
   const packages = useSelector(state => state.packages)
-
+  const dispatch = useDispatch();
+  const onSearch = (inputValue) => {
+    console.log(inputValue)
+    dispatch(getPackages(inputValue))
+  }
   return (
     <>
       <div className="pure-g-r content">
@@ -27,7 +34,7 @@ const Main = () => {
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search"/>
+            <SearchField searchButtonText="Search" onSearch={onSearch}/>
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1">
