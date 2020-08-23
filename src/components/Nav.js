@@ -6,24 +6,28 @@ import 'purecss/build/pure.css'
 
 const Nav = () => {
   return (
-    <div className="pure-menu pure-menu-horizontal">
-      <ul className="pure-menu-list">
-        <li className="pure-menu-item">
-          <Link className="pure-menu-link" to="/">Home</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link className="pure-menu-link" to="/landing">Landing</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link className="pure-menu-link" to="/other">Other</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link className="pure-menu-link" to="/packageinfo">Package info</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link className="pure-menu-link" to="/help">Help</Link>
-        </li>
-      </ul>
+    <div className="pure-g">
+      <div className="pure-u-1">
+        <div className="pure-menu pure-menu-horizontal">
+          <ul className="pure-menu-list">
+            <li className="pure-menu-item">
+              <Link className="pure-menu-link" to="/">Home</Link>
+            </li>
+            <li className="pure-menu-item">
+              <Link className="pure-menu-link" to="/landing">Landing</Link>
+            </li>
+            <li className="pure-menu-item">
+              <Link className="pure-menu-link" to="/other">Other</Link>
+            </li>
+            <li className="pure-menu-item">
+              <Link className="pure-menu-link" to="/packageinfo">Package info</Link>
+            </li>
+            <li className="pure-menu-item">
+              <Link className="pure-menu-link" to="/help">Help</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

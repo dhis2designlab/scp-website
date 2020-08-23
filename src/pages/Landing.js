@@ -1,11 +1,13 @@
 import React from 'react';
 import SearchField from '../components/SearchField'
 import 'purecss/build/pure.css'
+import '../stylesheets/landing.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
 import { getPackages } from '../actions/npms'
 import { useHistory } from 'react-router-dom'
+import { useEffect } from 'react';
 
 
 const landingStyle = {
@@ -18,7 +20,7 @@ const landingStyle = {
         height: 'calc(65vh - 80px)',
         justifyContent: 'center',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
     }
 }
 
@@ -26,6 +28,13 @@ const landingStyle = {
 const Landing = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    useEffect(() => {
+        document.body.className = 'landing';
+        return () => {
+            document.body.classList.remove('landing');
+        }
+    }, [])
+    
     const onSearch = (inputValue) => {
         console.log(inputValue)
         dispatch(getPackages(inputValue))

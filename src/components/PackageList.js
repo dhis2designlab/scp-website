@@ -34,7 +34,7 @@ const versionStyle = {
 
 
 const PackageList = (props) => {
-    const { style, packages, packageCount, packagesPerPage = 5 } = props;
+    const { style, packages, packageCount, packagesPerPage = 10 } = props;
     const [offset, setOffset] = useState(0);
 
     let handlePageChange = (data) => {

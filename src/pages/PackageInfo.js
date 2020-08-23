@@ -90,7 +90,14 @@ const PackageInfo = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-        return <div>Loading...</div>;
+        return (
+            <div className="pure-g-r content">
+                <div className="pure-u-1">
+                    <div className="l-box">
+                        <div>Loading...</div></div>
+                </div>
+            </div>
+        );
     } else {
         const collaborators = item.collected.github.contributors.filter((collaborator, idx) => idx < 5);
         return (
@@ -134,7 +141,7 @@ const PackageInfo = (props) => {
                             <p data-tip={new Date(item.collected.metadata.date)}>{moment(item.collected.metadata.date).startOf('day').fromNow()}</p>
                             {collaborators.length ? <><h4>Collaborators</h4>
                                 <ul id="collaborators">
-                                    {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} avatarSize={{width:'40px'}} /></li>)}
+                                    {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} avatarSize={{ width: '40px' }} /></li>)}
                                 </ul></> : null
                             }
                             {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>
