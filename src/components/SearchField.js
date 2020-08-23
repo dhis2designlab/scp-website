@@ -6,6 +6,7 @@ const searchFieldStyle = {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
         borderWidth: '0px',
+        margin: 0,
     },
     button: {
         borderWidth: '0px',
@@ -13,6 +14,11 @@ const searchFieldStyle = {
         borderBottomLeftRadius: 0,
         borderTopRightRadius: '4px',
         borderBottomRightRadius: '4px',
+        margin: 0,
+    },
+    form: {
+        display: 'flex',
+        width: '100%',
     }
 }
 
@@ -39,11 +45,9 @@ const SearchField = (props) => {
     }
 
     return (
-        <form className="pure-form pure-g">
-            <div className="pure-u-1">
-                <input id="search" type="text" style={style.input} className="pure-input-2-3" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
-                <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
-            </div>
+        <form className="pure-form" style={searchFieldStyle.form}>
+            <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
+            <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
         </form>
     )
 }
