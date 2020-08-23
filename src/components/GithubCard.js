@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ReactTooltip from 'react-tooltip'
+import 'purecss/build/pure.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserSlash } from '@fortawesome/free-solid-svg-icons'
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons'
+
+const githubCardStyle = {
+    link: {
+        color: 'inherit',
+    }
+}
 
 const GithubCard = (props) => {
     const [state, setState] = useState({
@@ -19,7 +26,7 @@ const GithubCard = (props) => {
             let result;
             try {
                 const response = await fetch(`https://api.github.com/users/${state.username}`);
-                
+
                 result = await response.json();
                 !isCancelled && setState((oldState) => ({
                     ...oldState,
@@ -49,8 +56,8 @@ const GithubCard = (props) => {
     } else {
         return (
             <>
-                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
-                    {status === 404 ? <FontAwesomeIcon icon={faUserSlash}/>
+                <a href={item.html_url} target="_blank" rel="noopener noreferrer" style={githubCardStyle.link}>
+                    {status === 404 || 403 ? <FontAwesomeIcon icon={faUserAlt} />
                         : <img data-tip={item.login} alt="github avatar" style={size} src={item.avatar_url} />}
                 </a>
                 <ReactTooltip />

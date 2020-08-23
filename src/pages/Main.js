@@ -26,6 +26,7 @@ const Main = () => {
     console.log(inputValue)
     dispatch(getPackages(inputValue))
   }
+  console.log(`packages = `, packages);
   return (
     <>
       <div className="pure-g-r content">
@@ -34,12 +35,12 @@ const Main = () => {
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search" onSearch={onSearch}/>
+            <SearchField searchButtonText="Search" onSearch={onSearch} />
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1">
           <div className="l-box">
-            <PackageList style={packageListStyle} packages={packages} />
+            <PackageList style={packageListStyle} packages={packages} packageCount={packages ? packages.length : 0} />
           </div>
         </div>
       </div>
