@@ -38,7 +38,7 @@ const Landing = () => {
     const onSearch = (inputValue) => {
         console.log(inputValue)
         dispatch(getPackages(inputValue))
-        history.push("/")
+        history.push("/search")
     }
     return (
         <div className="pure-g-r content">
