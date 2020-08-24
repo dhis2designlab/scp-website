@@ -38,11 +38,11 @@ const Landing = () => {
     const onSearch = (inputValue) => {
         console.log(inputValue)
         dispatch(getPackages(inputValue))
-        history.push("/")
+        history.push("/search")
     }
     return (
         <div className="pure-g-r content">
-            <div class="pure-u-1 center" style={landingStyle.box}>
+            <div className="pure-u-1 center" style={landingStyle.box}>
                 <div style={landingStyle.searchBox}>
                     <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch} />
                 </div>

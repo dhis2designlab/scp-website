@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Nav from '../components/Nav'
-import Main from '../pages/Main'
+import Search from '../pages/Search'
 import Other from '../pages/Other'
 import Help from '../pages/Help'
 import Landing from '../pages/Landing'
@@ -19,8 +19,8 @@ const App = () => {
     <Router>
       <Nav/>
       <Switch>
-        <Route exact path='/' component={Main}/>
-        <Route path='/landing' component={Landing}/>
+        <Route exact path='/' component={Landing}/>
+        <Route path='/search' component={Search}/>
         <Route path='/other' component={Other}/>
         <Route path='/packageinfo' component={PackageInfo}/>
         <Route path='/help' component={Help}/>

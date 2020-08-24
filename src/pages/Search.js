@@ -19,7 +19,7 @@ const packageListStyle = {
   }
 }
 
-const Main = () => {
+const Search = () => {
   const packages = useSelector(state => state.packages)
   const dispatch = useDispatch();
   const onSearch = (inputValue) => {
@@ -31,7 +31,7 @@ const Main = () => {
     <>
       <div className="pure-g-r content">
         <div className="l-box">
-          <h1>Main page</h1>
+          <h1>Search</h1>
         </div>
         <div className="pure-u-1-1 pure-u-md-1-1 search">
           <div className="l-box">
@@ -48,4 +48,4 @@ const Main = () => {
   );
 }
 
-export default Main;
+export default Search;
