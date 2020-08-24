@@ -57,7 +57,7 @@ const GithubCard = (props) => {
         return (
             <>
                 <a href={item.html_url} target="_blank" rel="noopener noreferrer" style={githubCardStyle.link}>
-                    {status === (404 || 403) ? <FontAwesomeIcon icon={faUserAlt} />
+                    {(status === 404 || status === 403) ? <FontAwesomeIcon icon={faUserAlt} />
                         : <img data-tip={item.login} alt="github avatar" style={size} src={item.avatar_url} />}
                 </a>
                 <ReactTooltip />
