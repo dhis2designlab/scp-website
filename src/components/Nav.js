@@ -12,7 +12,7 @@ const Nav = (props) => {
   const onLanding = location.pathname === '/';
   return (
     <div className="pure-g-r">
-      <div className={onLanding ? 'pure-u-1 landing-style' : 'pure-u-1'}>
+      <div className={onLanding ? 'menu pure-u-1 landing-style' : 'menu pure-u-1 general'}>
           <div className="pure-menu pure-menu-horizontal">
             <ul className="pure-menu-list">
               <li className="pure-menu-item">

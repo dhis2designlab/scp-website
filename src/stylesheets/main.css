@@ -6,14 +6,6 @@ html, body {
     margin: 0;
 }
 
-#root {
-    height: 100%;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-}
-
 .content {
     font-family: 'Open Sans', serif;
     font-size: 1rem;
