@@ -1,0 +1,6 @@
+/*This removes right margin from ul list */
+
+ul.package-list  {
+    -webkit-padding-start: 0;
+    margin-block-start: 0;
+}

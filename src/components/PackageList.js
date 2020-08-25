@@ -6,6 +6,7 @@ import moment from 'moment'
 import ReactPaginate from 'react-paginate'
 import 'purecss/build/pure.css'
 import '../stylesheets/paginate.css'
+import '../stylesheets/package-list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight, faLink, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
 
@@ -46,6 +47,10 @@ const headerBoxStyle = {
     margin: '15px 0 15px 0'
 }
 
+const packageBoxStyle = {
+    marginBottom: '15px',
+}
+
 
 const PackageList = (props) => {
     const { style, packages, packageCount, packagesPerPage = 10 } = props;
@@ -62,9 +67,9 @@ const PackageList = (props) => {
     let usePackages = packages.slice(offset, offset + packagesPerPage);
     return (
         <>
-            <ul style={{ listStyleType: "none" }}>
+            <ul className="package-list" style={{ listStyleType: "none" }}>
                 {usePackages.map(p => <li key={p.package.name} style={style.item}>
-                    <div className="pure-g">
+                    <div className="pure-g" style={packageBoxStyle}>
                         <div className="pure-u-1" style={headerBoxStyle}>
                             <Link style={packageHeaderStyle} to={{
                                 pathname: "/packageinfo",
