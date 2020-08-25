@@ -49,7 +49,20 @@ const SearchField = (props) => {
 
     const toggleDhis2 = (e) => {
         e.preventDefault()
-        setModifiers([...modifiers, 'scope:dhis2'])
+        var element = document.getElementById("dhis2");
+
+        if (!modifiers.includes('scope:dhis2')) {
+            element.classList.add("pure-button-active");
+            setModifiers([...modifiers, 'scope:dhis2'])
+        } else {
+            element.classList.remove("pure-button-active");
+            var arr = modifiers;
+            var index = modifiers.indexOf('scope:dhis2');
+            if (index > -1 ) {
+                arr.splice(index, 1);
+            }
+            setModifiers(arr);
+        }
       }
 
     // To be expanded upon?
@@ -67,7 +80,7 @@ const SearchField = (props) => {
                 <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
                 <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
             </form>
-            <button type="button" onClick={toggleDhis2}>dhis2</button>
+            <button id="dhis2" class="pure-button" onClick={toggleDhis2}>dhis2</button>
         </>
     )
 }
