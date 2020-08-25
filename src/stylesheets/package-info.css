@@ -37,6 +37,14 @@
     margin-left: 10px;
 }
 
+.right-column ul#collaborators li:first-of-type {
+    margin-left: 0px;
+}
+
+.right-column ul#collaborators img {
+    margin-bottom: 10px;
+}
+
 .left-column p {
     color: rgba(0, 0, 0, .85);
     line-height: 1.6;
