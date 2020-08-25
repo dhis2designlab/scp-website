@@ -1,0 +1,3 @@
+# But do not allow anything else in the '.build' folder to be linted
+!build
+build/*
