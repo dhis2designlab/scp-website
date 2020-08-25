@@ -117,35 +117,35 @@ const PackageInfo = (props) => {
                     <div className="pure-u-1-1 pure-u-md-2-5 pure-u-lg-2-5 right-column">
                         <div className="l-box">
                             <div className="pure-g-r">
-                                <div className="pure-u-1-1"><h4>Install</h4>
+                                <div className="pure-u-1-1"><h5>Install</h5>
                                     <Clipboard value={`npm i ${name}`} />
                                 </div>
-                                <div className="pure-u-1-2"><h4>Version</h4>
+                                <div className="pure-u-1-2"><h5>Version</h5>
                                     <p>{item.collected.metadata.version}</p></div>
-                                <div className="pure-u-1-2"><h4>License</h4>
+                                <div className="pure-u-1-2"><h5>License</h5>
                                     <p>{item.collected.metadata.license}</p></div>
-                                <div className="pure-u-1-2"><h4>Weekly downloads</h4>
+                                <div className="pure-u-1-2"><h5>Weekly downloads</h5>
                                     <p>{item.collected.npm.downloads[1].count.toLocaleString()}</p>
                                 </div>
-                                <div className="pure-u-1-2"><h4>Issues</h4>
+                                <div className="pure-u-1-2"><h5>Issues</h5>
                                     <p>{item.collected.github.issues.openCount}</p>
                                 </div>
                             </div>
 
 
-                            <h4>NPM</h4>
+                            <h5>NPM</h5>
                             <FontAwesomeIcon icon={faLink} /> <a className="source-links" href={item.collected.metadata.links.npm}>{decodeURIComponent(item.collected.metadata.links.npm)}</a>
-                            <h4>Repository</h4>
+                            <h5>Repository</h5>
                             <FontAwesomeIcon icon={faCodeBranch} /> <a className="source-links" href={item.collected.metadata.links.repository}>{decodeURIComponent(item.collected.metadata.links.repository)}</a>
-                            <h4>Last publish</h4>
+                            <h5>Last publish</h5>
                             <p data-tip={new Date(item.collected.metadata.date)}>{moment(item.collected.metadata.date).startOf('day').fromNow()}</p>
-                            {collaborators.length ? <><h4>Collaborators</h4>
+                            {collaborators.length ? <><h5>Collaborators</h5>
                                 <ul id="collaborators">
                                     {collaborators.map((i) => <li key={i.username}><GithubCard username={i.username} avatarSize={{ width: '40px' }} /></li>)}
                                 </ul></> : null
                             }
                             {item.collected.metadata.keywords !== undefined && item.collected.metadata.keywords.length ? <>
-                                <h4>Keywords</h4>
+                                <h5>Keywords</h5>
                                 <ul id="keywords">
                                     {item.collected.metadata.keywords.map((i) => <li key={i}><a href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a></li>)}
                                 </ul>
