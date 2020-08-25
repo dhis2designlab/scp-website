@@ -10,8 +10,9 @@
     padding: 1.5em;
 }
 
-.right-column h3 {
+.right-column h5 {
     color: rgba(0, 0, 0, 0.5);
+    margin: 20px 0 20px 0;
 }
 
 .right-column p {
