@@ -50,12 +50,15 @@ const SearchField = (props) => {
     const toggleDhis2 = (e) => {
         e.preventDefault()
         var element = document.getElementById("dhis2");
+        var searchbar = document.getElementById("search");
 
         if (!modifiers.includes('scope:dhis2')) {
             element.classList.add("pure-button-active");
+            searchbar.style.backgroundColor = 'limegreen';
             setModifiers([...modifiers, 'scope:dhis2'])
         } else {
             element.classList.remove("pure-button-active");
+            searchbar.style.backgroundColor = 'white';
             var arr = modifiers;
             var index = modifiers.indexOf('scope:dhis2');
             if (index > -1 ) {
