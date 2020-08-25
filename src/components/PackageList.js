@@ -15,7 +15,6 @@ const liStyle = {
     backgroundColor: "#f2f2f2",
     borderRadius: "4px",
     float: 'left',
-
 }
 
 const ulStyle = {
@@ -37,7 +36,14 @@ const versionStyle = {
 
 const packageHeaderStyle = {
     margin: '0 8px 0 0px',
-    color: 'inherit'
+    fontAwesome: {
+        margin: '0 8px 0 0px',
+        color: 'inherit',
+    }
+}
+
+const headerBoxStyle = {
+    margin: '15px 0 15px 0'
 }
 
 
@@ -59,13 +65,14 @@ const PackageList = (props) => {
             <ul style={{ listStyleType: "none" }}>
                 {usePackages.map(p => <li key={p.package.name} style={style.item}>
                     <div className="pure-g">
-                        <div className="pure-u-1" style={{ padding: '15px' }}>
+                        <div className="pure-u-1" style={headerBoxStyle}>
                             <Link style={packageHeaderStyle} to={{
                                 pathname: "/packageinfo",
                                 packageName: p.package.name
-                            }}><h2 style={{ display: 'inline' }}>{p.package.name}</h2></Link> <Link style={packageHeaderStyle} target="_blank" to={{ pathname: p.package.links.npm }}> <FontAwesomeIcon icon={faLink} /></Link>
-                            <Link style={packageHeaderStyle} target="_blank" to={{ pathname: p.package.links.repository }}><FontAwesomeIcon icon={faCodeBranch} /></Link>
-
+                            }}><h3 style={{ display: 'inline' }}>{p.package.name}</h3></Link> <Link style={packageHeaderStyle.fontAwesome} target="_blank" to={{ pathname: p.package.links.npm }}> <FontAwesomeIcon icon={faLink} /></Link>
+                            <Link style={packageHeaderStyle.fontAwesome} target="_blank" to={{ pathname: p.package.links.repository }}><FontAwesomeIcon icon={faCodeBranch} /></Link>
+                        </div>
+                        <div className="pure-u-1">
                             <p style={style.description}>{p.package.description}</p>
                             {p.package.keywords ? <>
                                 <ul style={ulStyle}>
