@@ -72,7 +72,7 @@ const PackageList = (props) => {
                     <div className="pure-g" style={packageBoxStyle}>
                         <div className="pure-u-1" style={headerBoxStyle}>
                             <Link style={packageHeaderStyle} to={{
-                                pathname: "/packageinfo",
+                                pathname: "/scp-website/packageinfo",
                                 packageName: p.package.name
                             }}><h3 style={{ display: 'inline' }}>{p.package.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: p.package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
                             <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: p.package.links.repository }}><img alt="Repository" src={process.env.PUBLIC_URL + '/img/GitHub-Mark-32px.png'} /></Link>
