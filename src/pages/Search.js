@@ -26,7 +26,6 @@ const Search = () => {
     console.log(inputValue)
     dispatch(getPackages(inputValue))
   }
-  console.log(`packages = `, packages);
   return (
     <>
       <div className="pure-g-r content">
