@@ -8,7 +8,7 @@ import 'purecss/build/pure.css'
 import '../stylesheets/paginate.css'
 import '../stylesheets/package-list.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleLeft, faAngleDoubleRight, faLink, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
 const liStyle = {
     margin: "10px 10px 0 0",
@@ -36,9 +36,9 @@ const versionStyle = {
 }
 
 const packageHeaderStyle = {
-    margin: '0 8px 0 0px',
-    fontAwesome: {
-        margin: '0 8px 0 0px',
+    margin: '0 10px 0 0px',
+    links: {
+        margin: '0 10px 0 0px',
         color: 'inherit',
     }
 }
@@ -74,8 +74,8 @@ const PackageList = (props) => {
                             <Link style={packageHeaderStyle} to={{
                                 pathname: "/packageinfo",
                                 packageName: p.package.name
-                            }}><h3 style={{ display: 'inline' }}>{p.package.name}</h3></Link> <Link style={packageHeaderStyle.fontAwesome} target="_blank" to={{ pathname: p.package.links.npm }}> <FontAwesomeIcon icon={faLink} /></Link>
-                            <Link style={packageHeaderStyle.fontAwesome} target="_blank" to={{ pathname: p.package.links.repository }}><FontAwesomeIcon icon={faCodeBranch} /></Link>
+                            }}><h3 style={{ display: 'inline' }}>{p.package.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: p.package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
+                            <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: p.package.links.repository }}><img alt="Repository" src={process.env.PUBLIC_URL + '/img/GitHub-Mark-32px.png'} /></Link>
                         </div>
                         <div className="pure-u-1">
                             <p style={style.description}>{p.package.description}</p>
