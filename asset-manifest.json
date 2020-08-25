@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/scp-website/static/css/main.b0f5e9c1.chunk.css",
-    "main.js": "/scp-website/static/js/main.aa0b565d.chunk.js",
-    "main.js.map": "/scp-website/static/js/main.aa0b565d.chunk.js.map",
+    "main.js": "/scp-website/static/js/main.d292ca39.chunk.js",
+    "main.js.map": "/scp-website/static/js/main.d292ca39.chunk.js.map",
     "runtime-main.js": "/scp-website/static/js/runtime-main.cb3387c1.js",
     "runtime-main.js.map": "/scp-website/static/js/runtime-main.cb3387c1.js.map",
     "static/css/2.120b4147.chunk.css": "/scp-website/static/css/2.120b4147.chunk.css",
-    "static/js/2.d4ff2fbc.chunk.js": "/scp-website/static/js/2.d4ff2fbc.chunk.js",
-    "static/js/2.d4ff2fbc.chunk.js.map": "/scp-website/static/js/2.d4ff2fbc.chunk.js.map",
+    "static/js/2.4c4926da.chunk.js": "/scp-website/static/js/2.4c4926da.chunk.js",
+    "static/js/2.4c4926da.chunk.js.map": "/scp-website/static/js/2.4c4926da.chunk.js.map",
     "index.html": "/scp-website/index.html",
-    "precache-manifest.0ae64e9177a16934bf9cb030c3d8b927.js": "/scp-website/precache-manifest.0ae64e9177a16934bf9cb030c3d8b927.js",
+    "precache-manifest.424f1a8fae27335cce94c783591d1da6.js": "/scp-website/precache-manifest.424f1a8fae27335cce94c783591d1da6.js",
     "service-worker.js": "/scp-website/service-worker.js",
     "static/css/2.120b4147.chunk.css.map": "/scp-website/static/css/2.120b4147.chunk.css.map",
     "static/css/main.b0f5e9c1.chunk.css.map": "/scp-website/static/css/main.b0f5e9c1.chunk.css.map",
-    "static/js/2.d4ff2fbc.chunk.js.LICENSE.txt": "/scp-website/static/js/2.d4ff2fbc.chunk.js.LICENSE.txt"
+    "static/js/2.4c4926da.chunk.js.LICENSE.txt": "/scp-website/static/js/2.4c4926da.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cb3387c1.js",
     "static/css/2.120b4147.chunk.css",
-    "static/js/2.d4ff2fbc.chunk.js",
+    "static/js/2.4c4926da.chunk.js",
     "static/css/main.b0f5e9c1.chunk.css",
-    "static/js/main.aa0b565d.chunk.js"
+    "static/js/main.d292ca39.chunk.js"
   ]
 }
