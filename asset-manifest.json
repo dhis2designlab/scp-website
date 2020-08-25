@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/scp-website/static/css/main.f634b987.chunk.css",
+    "main.js": "/scp-website/static/js/main.2b5e4634.chunk.js",
+    "main.js.map": "/scp-website/static/js/main.2b5e4634.chunk.js.map",
+    "runtime-main.js": "/scp-website/static/js/runtime-main.cb3387c1.js",
+    "runtime-main.js.map": "/scp-website/static/js/runtime-main.cb3387c1.js.map",
+    "static/css/2.1d7f7d70.chunk.css": "/scp-website/static/css/2.1d7f7d70.chunk.css",
+    "static/js/2.5577fcba.chunk.js": "/scp-website/static/js/2.5577fcba.chunk.js",
+    "static/js/2.5577fcba.chunk.js.map": "/scp-website/static/js/2.5577fcba.chunk.js.map",
+    "index.html": "/scp-website/index.html",
+    "precache-manifest.1bbb3c7db5f3f6bd02b028bd81c92d63.js": "/scp-website/precache-manifest.1bbb3c7db5f3f6bd02b028bd81c92d63.js",
+    "service-worker.js": "/scp-website/service-worker.js",
+    "static/css/2.1d7f7d70.chunk.css.map": "/scp-website/static/css/2.1d7f7d70.chunk.css.map",
+    "static/css/main.f634b987.chunk.css.map": "/scp-website/static/css/main.f634b987.chunk.css.map",
+    "static/js/2.5577fcba.chunk.js.LICENSE.txt": "/scp-website/static/js/2.5577fcba.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cb3387c1.js",
+    "static/css/2.1d7f7d70.chunk.css",
+    "static/js/2.5577fcba.chunk.js",
+    "static/css/main.f634b987.chunk.css",
+    "static/js/main.2b5e4634.chunk.js"
+  ]
+}
