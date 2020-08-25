@@ -69,3 +69,7 @@ pre {
 .source-links {
     font-weight: bold;
 }
+
+.right-column {
+    word-wrap:break-word;
+}
