@@ -48,17 +48,13 @@ const SearchField = (props) => {
     }
 
     const toggleDhis2 = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         var element = document.getElementById("dhis2");
         var searchbar = document.getElementById("search");
 
         if (!modifiers.includes('scope:dhis2')) {
-            element.classList.add("pure-button-active");
-            searchbar.style.backgroundColor = 'limegreen';
             setModifiers([...modifiers, 'scope:dhis2'])
         } else {
-            element.classList.remove("pure-button-active");
-            searchbar.style.backgroundColor = 'white';
             var arr = modifiers;
             var index = modifiers.indexOf('scope:dhis2');
             if (index > -1 ) {
@@ -83,7 +79,10 @@ const SearchField = (props) => {
                 <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
                 <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
             </form>
-            <button id="dhis2" class="pure-button" onClick={toggleDhis2}>dhis2</button>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
+                <label class="custom-control-label" for="customSwitches" >Toggle dhis2 search</label>
+            </div>
         </>
     )
 }
