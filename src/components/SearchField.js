@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import 'purecss/build/pure.css'
+import '../stylesheets/search-field.css'
 
 const searchFieldStyle = {
     input: {
@@ -81,7 +82,7 @@ const SearchField = (props) => {
             </form>
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
-                <label class="custom-control-label" for="customSwitches" >Toggle dhis2 search</label>
+                <label class="custom-control-label" for="customSwitches">Toggle dhis2 search</label>
             </div>
         </>
     )
