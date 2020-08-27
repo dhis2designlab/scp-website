@@ -68,7 +68,7 @@ const Landing = () => {
                         <h1 style={landingStyle.titleText}>Component Search</h1>
                     </div>
                     <div className="description" style={landingStyle.description}>
-                        <p>Explore components created within the HISP community
+                        <p>Explore components created by the HISP community
                         </p>
                     </div>
                     <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch} />
