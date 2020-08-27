@@ -91,7 +91,7 @@ const PackageInfo = (props) => {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
         return (
-            <div className="pure-g-r content">
+            <div className="pure-g content">
                 <div className="pure-u-1">
                     <div className="l-box">
                         <div>Loading...</div></div>
@@ -102,7 +102,7 @@ const PackageInfo = (props) => {
         const collaborators = item.collected.github.contributors.filter((collaborator, idx) => idx < 5);
         return (
             <>
-                <div className="pure-g-r content">
+                <div className="pure-g content">
                     <div className="pure-u-1-1">
                         <div className="l-box"><h1>{item.collected.metadata.name}</h1>
                             <span data-tip={new Date(item.collected.metadata.date)}>{item.collected.metadata.version} &bull; Published {moment(item.collected.metadata.date).startOf('day').fromNow()}</span><ReactTooltip />

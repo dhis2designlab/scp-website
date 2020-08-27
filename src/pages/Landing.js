@@ -53,7 +53,7 @@ const Landing = () => {
         history.push("/scp-website/search")
     }
     return (
-        <div className="pure-g-r content">
+        <div className="pure-g content">
             <div className="pure-u-1 center" style={landingStyle.box}>
                 <div style={landingStyle.searchBox}>
                     <div className="title" style={landingStyle.title}>
