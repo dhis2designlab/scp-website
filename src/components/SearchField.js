@@ -78,9 +78,9 @@ const SearchField = (props) => {
                 <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
                 <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
             </form>
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
-                <label class="custom-control-label" for="customSwitches">Toggle dhis2 search</label>
+            <div className="custom-control custom-switch">
+                <input type="checkbox" className="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
+                <label className="custom-control-label" htmlFor="customSwitches">Toggle dhis2 search</label>
             </div>
         </>
     )
