@@ -17,7 +17,7 @@ const landingStyle = {
     },
     box: {
         width: '100%',
-        height: 'calc(65vh - 80px)',
+        height: 'calc(90vh - 80px)',
         justifyContent: 'center',
         display: 'flex',
         alignItems: 'center',
@@ -64,7 +64,7 @@ const Landing = () => {
         <div className="pure-g" style={landingStyle.content}>
             <div className="pure-u-1 center" style={landingStyle.box}>
                 <div style={landingStyle.searchBox}>
-                    <div className="title" style={landingStyle.title}>
+                    <div className="landing-title" style={landingStyle.title}>
                         <h1 style={landingStyle.titleText}>Component Search</h1>
                     </div>
                     <div className="description" style={landingStyle.description}>
