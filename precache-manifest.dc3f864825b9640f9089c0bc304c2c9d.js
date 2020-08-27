@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "13925fb038d32c01c69afc0c2c537996",
+    "revision": "a9ab8b326b07f98a9c02670a49329384",
     "url": "/scp-website/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/scp-website/static/css/2.af2871a3.chunk.css"
   },
   {
-    "revision": "ad449606ac6db95f6ccc",
-    "url": "/scp-website/static/css/main.7d4d2772.chunk.css"
+    "revision": "b440441a49567f7de831",
+    "url": "/scp-website/static/css/main.dcb6f2e1.chunk.css"
   },
   {
     "revision": "9a05e303622635c77a6d",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/scp-website/static/js/2.96790ac8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ad449606ac6db95f6ccc",
-    "url": "/scp-website/static/js/main.619b9fe2.chunk.js"
+    "revision": "b440441a49567f7de831",
+    "url": "/scp-website/static/js/main.ec508adf.chunk.js"
   },
   {
     "revision": "e1e3a65bf39b3a32b2cb",
