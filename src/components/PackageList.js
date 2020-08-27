@@ -49,6 +49,7 @@ const headerBoxStyle = {
 
 const packageBoxStyle = {
     marginBottom: '15px',
+    boxShadow: '8px 1px 4px -6px rgba(190,190,190,0.1)'
 }
 
 
