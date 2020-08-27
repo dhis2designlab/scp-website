@@ -30,7 +30,6 @@ const Nav = (props) => {
           <Navigation className="mr-auto">
             <Navigation.Link as={Link} to="/scp-website">Home</Navigation.Link>
             <Navigation.Link as={Link} to="/scp-website/search">Search</Navigation.Link>
-            <Navigation.Link as={Link} to="/scp-website/packageinfo">Package info</Navigation.Link>
             <Navigation.Link as={Link} to="/scp-website/help">Help</Navigation.Link>
           </Navigation>
         </Navbar.Collapse>
