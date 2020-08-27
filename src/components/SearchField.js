@@ -50,8 +50,6 @@ const SearchField = (props) => {
 
     const toggleDhis2 = (e) => {
         //e.preventDefault()
-        var element = document.getElementById("dhis2");
-        var searchbar = document.getElementById("search");
 
         if (!modifiers.includes('scope:dhis2')) {
             setModifiers([...modifiers, 'scope:dhis2'])

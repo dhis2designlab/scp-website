@@ -29,9 +29,6 @@ const Search = () => {
   return (
     <>
       <div className="pure-g-r content">
-        <div className="l-box">
-          <h1>Search</h1>
-        </div>
         <div className="pure-u-1-1 pure-u-md-1-1 search">
           <div className="l-box">
             <SearchField searchButtonText="Search" onSearch={onSearch} />
