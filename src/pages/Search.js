@@ -29,12 +29,12 @@ const Search = () => {
   return (
     <>
       <div className="pure-g content">
-        <div className="pure-u-1-1 pure-u-md-3-5 search">
+        <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
           <div className="l-box">
             <SearchField searchButtonText="Search" onSearch={onSearch} />
           </div>
         </div>
-        <div className="pure-u-1-1 pure-u-md-3-5">
+        <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5">
           <div className="l-box">
             <PackageList style={packageListStyle} packages={packages} packageCount={packages ? packages.length : 0} />
           </div>
