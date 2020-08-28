@@ -1,4 +1,4 @@
-# scp-website
+# DHIS2 Component Search
 The shared component platform website is currently quite simple, allowing you to search for packages through npm.
 
 ## Tech
