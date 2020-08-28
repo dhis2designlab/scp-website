@@ -1,14 +1,8 @@
 # scp-website
-The shared component platform website is currently very simple, made with create-react-app and uses the libraries in Tech.
-
-
+The shared component platform website is currently quite simple, allowing you to search for packages through npm.
 
 ## Tech
-* react
-* react-router
-* redux
-* @dhis2/ui
-
+Made with React and Redux
 
 ## Redux
 To install the devtools extension, see here and follow the "for Chrome/Firefox" guide: https://github.com/zalmoxisus/redux-devtools-extension
