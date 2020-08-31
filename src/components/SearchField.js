@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import 'purecss/build/pure.css'
-import $ from 'jquery'
-import 'bootstrap/dist/js/bootstrap.bundle'
-import 'react-bootstrap/dist/react-bootstrap'
+import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
-window.jQuery = window.$ = $;
 
 const searchFieldStyle = {
     input: {
@@ -76,7 +73,7 @@ const SearchField = (props) => {
       }
 */
     // 
-      const queryBuilder = (mod) => {
+    const queryBuilder = (mod) => {
         var input = inputValue
         if (mod != '') {
             //var appendix = modifiers.join('+');
@@ -84,23 +81,35 @@ const SearchField = (props) => {
             input += appendix
         }
         return input
-      }
-
+    }
+    
     return (
-        <div className="input-group">
-            <input type="text" className="form-control" value={inputValue} onChange={handleChange} aria-label="Text input with segmented dropdown button"/>
-            <div className="input-group-append">
-                <button type="button" className="btn btn-outline-secondary" id="search" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
-                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span className="sr-only">Toggle Dropdown</span>
-                </button>
-                <div className="dropdown-menu">
-                    <button className="dropdown-item" type="button" onClick={onClick}>Search</button>
-                    <div role="separator" className="dropdown-divider"></div>
-                    <button className="dropdown-item" type="button" onClick={onSecondary}>Search in the dhis2 namespace</button>
-                </div>
-            </div>
-        </div>
+        <InputGroup>
+            <FormControl
+                placeholder="Search for component"
+                aria-label="Search for component"
+                aria-describedby="basic-addon2"
+                value={inputValue} 
+                onChange={handleChange}
+            />
+            <InputGroup.Append>
+                <Button 
+                    variant="outline-secondary">
+                    {props.searchButtonText !== undefined ? props.searchButtonText : `Search`}
+                </Button>
+                <DropdownButton
+                    as={InputGroup.Append}
+                    className="dropdownbutton"
+                    variant="outline-secondary"
+                    title=""
+                    id="input-group-dropdown-2"
+                >
+                    <Dropdown.Item onClick={onClick}>Search all</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={onSecondary}>Search dhis2 namespace</Dropdown.Item>
+                </DropdownButton>
+            </InputGroup.Append>
+        </InputGroup>
     )
 }
 
