@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import 'purecss/build/pure.css'
+import $ from 'jquery'
+import 'bootstrap/dist/js/bootstrap.bundle'
+import 'react-bootstrap/dist/react-bootstrap'
 import '../stylesheets/search-field.css'
+window.jQuery = window.$ = $;
 
 const searchFieldStyle = {
     input: {
@@ -27,6 +31,7 @@ const searchFieldStyle = {
 const SearchField = (props) => {
     const style = props.style || searchFieldStyle;
     const [inputValue, setInputValue] = useState('');
+    //more relevant if we allow different sets of search modifiers
     const [modifiers, setModifiers] = useState([]);
     /*
 
@@ -40,14 +45,21 @@ const SearchField = (props) => {
 
     const onClick = (e) => {
         e.preventDefault()
-        var query = queryBuilder();
-        props.onSearch(query);
+        props.onSearch(queryBuilder(''));
+    }
+
+    // simple solution, not scalable
+    const onSecondary = (e) => {
+        e.preventDefault()
+        var dhisModifier = 'scope:dhis2';
+        props.onSearch(queryBuilder(dhisModifier))
     }
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
     }
 
+    /* a little more scalable
     const toggleDhis2 = (e) => {
         //e.preventDefault()
 
@@ -62,27 +74,33 @@ const SearchField = (props) => {
             setModifiers(arr);
         }
       }
-
-    // To be expanded upon?
-      const queryBuilder = () => {
+*/
+    // 
+      const queryBuilder = (mod) => {
         var input = inputValue
-        var appendix = modifiers.join('+');
-        appendix = '+' + appendix
-        input += appendix;
-        return input;
+        if (mod != '') {
+            //var appendix = modifiers.join('+');
+            var appendix = '+' + mod;
+            input += appendix
+        }
+        return input
       }
 
     return (
-        <>
-            <form className="pure-form" style={searchFieldStyle.form}>
-                <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
-                <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
-            </form>
-            <div className="custom-control custom-switch">
-                <input type="checkbox" className="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
-                <label className="custom-control-label" htmlFor="customSwitches">Toggle dhis2 search</label>
+        <div className="input-group">
+            <input type="text" className="form-control" value={inputValue} onChange={handleChange} aria-label="Text input with segmented dropdown button"/>
+            <div className="input-group-append">
+                <button type="button" className="btn btn-outline-secondary" id="search" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
+                <button type="button" className="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span className="sr-only">Toggle Dropdown</span>
+                </button>
+                <div className="dropdown-menu">
+                    <button className="dropdown-item" type="button" onClick={onClick}>Search</button>
+                    <div role="separator" className="dropdown-divider"></div>
+                    <button className="dropdown-item" type="button" onClick={onSecondary}>Search in the dhis2 namespace</button>
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 
