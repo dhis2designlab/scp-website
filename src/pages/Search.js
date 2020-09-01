@@ -8,7 +8,6 @@ import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
 import { useDispatch } from 'react-redux'
 import { getPackages } from '../actions/npms'
-import { query } from '../actions/actionTypes';
 
 const packageListStyle = {
   item: {
@@ -25,15 +24,29 @@ const Search = () => {
   const dispatch = useDispatch();
   const packages = useSelector(state => state.packages.currPackages)
   //Change when more is known about req search functionality
-  const community = useSelector(state => state.query.modifiers)[0] === 'keywords:dhis2'; //test
-  const verified = useSelector(state => state.query.modifiers)[0] === 'scope:dhis2';//test
+  const community = useSelector(state => state.query.modifiers)[0] === 'keywords:dhis2';
+  const verified = useSelector(state => state.query.modifiers)[0] === 'scope:dhis2';
+  const searchTerm = useSelector(state => state.query.searchTerm)
 
   const onSearch = (inputValue) => {
-    if (inputValue === '') {
-      return;
+    if (inputValue !== null) {
+      dispatch(getPackages(inputValue))
     }
-    dispatch(getPackages(inputValue))
-}
+  }
+
+  //display different placeholders based on context
+  const placeHolderText = () => {
+    var defaultText = "Search for component";
+    return  (searchTerm == null)
+            ? defaultText
+            : (searchTerm !== '')
+            ? searchTerm
+            : !(community || verified)
+            ? defaultText
+            : verified
+            ? "All verified community packages"
+            : "All unverified community packages";
+  }
 
 
   return (
@@ -41,9 +54,9 @@ const Search = () => {
       <div className="pure-g content">
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search" onSearch={onSearch}/>
+            <SearchField placeHolderText={placeHolderText} searchButtonText="Search" onSearch={onSearch}/>
             {verified &&
-              <Badge className="badge"variant="success">You are browsing verified packages</Badge>
+              <Badge className="badge"variant="success">You are browsing verified community packages</Badge>
             }
             {community &&
               <Badge className="badge" variant="primary">You are browsing unverified community packages</Badge>

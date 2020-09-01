@@ -57,13 +57,16 @@ const Landing = () => {
     }, [])
 
     const onSearch = (inputValue) => {
-        if (inputValue === '') {
-            return;
+        if (inputValue !== null) {
+            dispatch(getPackages(inputValue))
+            history.push("/scp-website/search")
         }
-        dispatch(getPackages(inputValue))
-        history.push("/scp-website/search")
     }
 
+    const placeHolderText = () => {
+        return "Search for component";
+    }
+    
     return (
         <div className="pure-g" style={landingStyle.content}>
             <div className="pure-u-1 center" style={landingStyle.box}>
@@ -75,7 +78,7 @@ const Landing = () => {
                         <p>Explore components created by the HISP community
                         </p>
                     </div>
-                    <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch}/>
+                    <SearchField placeHolderText={placeHolderText} searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch}/>
                 </div>
             </div>
         </div>

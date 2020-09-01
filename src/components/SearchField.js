@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
 import 'purecss/build/pure.css'
 import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
@@ -9,8 +8,6 @@ import { setModifiers, setSearchTerm } from '../actions/npms'
 const SearchField = (props) => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
-    const searchTerm = useSelector(state => state.query.searchTerm)
-    const mods = useSelector(state => state.query.modifiers)
 
     const onClick = (e) => {
         e.preventDefault()
@@ -26,7 +23,7 @@ const SearchField = (props) => {
 
     const onTertiary = (e) => {
         e.preventDefault();
-        //TODO: make this far less hardcoded when we know the exact searchterms.
+        //TODO: make this far less hardcoded when we know the req searchterms.
         var currMods = ['scope:dhis2']
         props.onSearch(queryBuilder(currMods))
 
@@ -34,7 +31,6 @@ const SearchField = (props) => {
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            //might need to change this if the general method of sending input is changed
             onClick(e);
         }
     }
@@ -45,12 +41,14 @@ const SearchField = (props) => {
 
     const queryBuilder = (mod) => {
         var input = inputValue
+        if (input === '' && mod.length < 1) {
+            return null; //Empty search
+        }
         if (mod.length > 0) {
             var appendix = mod.join('+')
             appendix = '+' + mod;
             input += appendix
         }
-        console.log(`Props `, props)
         dispatch(setModifiers(mod))
         dispatch(setSearchTerm(inputValue))
         return input
@@ -59,7 +57,7 @@ const SearchField = (props) => {
     return (
         <InputGroup>
             <FormControl
-                placeholder={searchTerm !== null ? (searchTerm !== '' ? searchTerm : "All") : "Search for component"}
+                placeholder={props.placeHolderText()}
                 aria-label="Search for component"
                 aria-describedby="basic-addon2"
                 value={inputValue}

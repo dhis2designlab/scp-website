@@ -15,7 +15,6 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
             return qs.stringify(params, {encode: false})
         }
     })
-    console.log(`Response `, response.data)
     dispatch({ type: packages.fetchPackages, payload: response.data})
 }
 
