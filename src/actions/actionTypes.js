@@ -4,3 +4,12 @@
 export const packages = {
     fetchPackages: 'packages/fetchPackages'
 } 
+
+export const pagination = {
+    //TODO
+    storePaginationOffset: 'pagination/storePaginationOffset'
+}
+
+export const modifiers = {
+    setModifiers: 'modifiers/setModifiers'
+}

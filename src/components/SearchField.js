@@ -4,6 +4,7 @@ import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react
 import '../stylesheets/search-field.css'
 
 const SearchField = (props) => {
+    const { mods } = props;
     const [inputValue, setInputValue] = useState('');
     //more relevant if we allow different sets of search modifiers
     //const [modifiers, setModifiers] = useState([]);
@@ -19,21 +20,24 @@ const SearchField = (props) => {
 
     const onClick = (e) => {
         e.preventDefault()
-        props.onSearch(queryBuilder(''));
+        props.onSearch(queryBuilder([]));
     }
 
     // simple solution, not scalable
     const onSecondary = (e) => {
         e.preventDefault()
-        var dhisModifier = 'scope:dhis2';
-        props.onSearch(queryBuilder(dhisModifier))
+        var currMods = ['scope:dhis2']
+        //var dhisModifier = 'scope:dhis2';
+        props.onSearch(queryBuilder(currMods))
     }
 
     const onTertiary = (e) => {
         e.preventDefault();
         //TODO: make this far less hardcoded when we know the exact searchterms.
-        var verifiedModifier = 'keywords:dhis2+not:deprecated+not:insecure';
-        props.onSearch(queryBuilder(verifiedModifier))
+        var currMods = ['keywords:dhis2', 'not:deprecated', 'not:insecure']
+        //var verifiedModifier = 'keywords:dhis2+not:deprecated+not:insecure';
+        
+        props.onSearch(queryBuilder(currMods))
 
     }
 
@@ -67,11 +71,12 @@ const SearchField = (props) => {
     // 
     const queryBuilder = (mod) => {
         var input = inputValue
-        if (mod !== '') {
-            //var appendix = modifiers.join('+');
-            var appendix = '+' + mod;
+        if (mod.length > 0) {
+            var appendix = mod.join('+');
+            appendix = '+' + mod;
             input += appendix
         }
+        props.setMods(mod)
         return input
     }
     
@@ -87,7 +92,9 @@ const SearchField = (props) => {
             />
             <InputGroup.Append>
                 <Button 
-                    variant="outline-secondary">
+                    variant="outline-secondary"
+                    onClick={onClick}
+                >
                     {props.searchButtonText !== undefined ? props.searchButtonText : `Search`}
                 </Button>
                 <DropdownButton
