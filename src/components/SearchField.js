@@ -55,6 +55,7 @@ const SearchField = (props) => {
     }
     
     return (
+
         <InputGroup>
             <FormControl
                 placeholder={props.placeHolderText()}
@@ -86,6 +87,7 @@ const SearchField = (props) => {
                 </DropdownButton>
             </InputGroup.Append>
         </InputGroup>
+
     )
 }
 
