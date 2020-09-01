@@ -75,7 +75,7 @@ const SearchField = (props) => {
     return (
         <>
             <form className="pure-form" style={searchFieldStyle.form}>
-                <input id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
+                <input autoComplete="off" id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
                 <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
             </form>
             <div className="custom-control custom-switch">
