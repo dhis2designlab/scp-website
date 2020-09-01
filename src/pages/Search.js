@@ -24,12 +24,10 @@ const Search = () => {
   const dispatch = useDispatch();
 
   const onSearch = (inputValue) => {
-    console.log(inputValue)
     dispatch(getPackages(inputValue))
   }
 
   const setMods = (modList) => {
-    console.log(`mods = `, modList)
     dispatch(setModifiers(modList))
   }
   return (

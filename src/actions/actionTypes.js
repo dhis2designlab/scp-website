@@ -3,7 +3,7 @@
 
 export const packages = {
     fetchPackages: 'packages/fetchPackages'
-} 
+}
 
 export const modifiers = {
     setModifiers: 'modifiers/setModifiers'
