@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 import 'purecss/build/pure.css'
 import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
+import { useDispatch } from 'react-redux'
+import { setModifiers } from '../actions/npms'
 
 const SearchField = (props) => {
-    //const { mods } = props;
-    const [inputValue, setInputValue] = useState('');
-    //more relevant if we allow different sets of search modifiers
-    //const [modifiers, setModifiers] = useState([]);
-    /*
-
     const dispatch = useDispatch();
-    const onSearch = (e) => {
-        console.log(inputValue)
-        e.preventDefault()
-        dispatch(getPackages(inputValue))
-    }
-    */
+    const [inputValue, setInputValue] = useState('');
 
     const onClick = (e) => {
         e.preventDefault()
@@ -27,7 +18,6 @@ const SearchField = (props) => {
     const onSecondary = (e) => {
         e.preventDefault()
         var currMods = ['keywords:dhis2']
-        //var dhisModifier = 'scope:dhis2';
         props.onSearch(queryBuilder(currMods))
     }
 
@@ -35,8 +25,6 @@ const SearchField = (props) => {
         e.preventDefault();
         //TODO: make this far less hardcoded when we know the exact searchterms.
         var currMods = ['scope:dhis2']
-        //var verifiedModifier = 'keywords:dhis2+not:deprecated+not:insecure';
-        
         props.onSearch(queryBuilder(currMods))
 
     }
@@ -52,23 +40,10 @@ const SearchField = (props) => {
         setInputValue(e.target.value);
     }
 
-    /* a little more scalable
-    const toggleDhis2 = (e) => {
-        //e.preventDefault()
+    const setMods = (modList) => {
+        dispatch(setModifiers(modList))
+    }
 
-        if (!modifiers.includes('scope:dhis2')) {
-            setModifiers([...modifiers, 'scope:dhis2'])
-        } else {
-            var arr = modifiers;
-            var index = modifiers.indexOf('scope:dhis2');
-            if (index > -1 ) {
-                arr.splice(index, 1);
-            }
-            setModifiers(arr);
-        }
-      }
-*/
-    // 
     const queryBuilder = (mod) => {
         var input = inputValue
         if (mod.length > 0) {
@@ -77,7 +52,7 @@ const SearchField = (props) => {
             input += appendix
         }
         console.log(`Props `, props)
-        props.setMods(mod)
+        dispatch(setModifiers(mod))
         return input
     }
     

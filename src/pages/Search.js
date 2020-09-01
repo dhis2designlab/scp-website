@@ -5,8 +5,7 @@ import '../stylesheets/main.css';
 import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
 import { useDispatch } from 'react-redux'
-import { getPackages, setModifiers } from '../actions/npms'
-
+import { getPackages } from '../actions/npms'
 
 const packageListStyle = {
   item: {
@@ -20,22 +19,20 @@ const packageListStyle = {
 }
 
 const Search = () => {
-  const packages = useSelector(state => state.packages.currPackages)
   const dispatch = useDispatch();
+  const packages = useSelector(state => state.packages.currPackages)
 
   const onSearch = (inputValue) => {
     dispatch(getPackages(inputValue))
-  }
+}
 
-  const setMods = (modList) => {
-    dispatch(setModifiers(modList))
-  }
+
   return (
     <>
       <div className="pure-g content">
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search" onSearch={onSearch} setMods={setMods} />
+            <SearchField searchButtonText="Search" onSearch={onSearch}/>
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5">

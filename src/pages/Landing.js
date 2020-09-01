@@ -5,7 +5,7 @@ import '../stylesheets/landing.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { getPackages, setModifiers } from '../actions/npms'
+import { getPackages } from '../actions/npms'
 import { useHistory } from 'react-router-dom'
 import { useEffect } from 'react';
 
@@ -61,10 +61,6 @@ const Landing = () => {
         history.push("/scp-website/search")
     }
 
-    const setMods = (modList) => {
-        console.log(`mods = `, modList)
-        dispatch(setModifiers(modList))
-    }
     return (
         <div className="pure-g" style={landingStyle.content}>
             <div className="pure-u-1 center" style={landingStyle.box}>
@@ -76,7 +72,7 @@ const Landing = () => {
                         <p>Explore components created by the HISP community
                         </p>
                     </div>
-                    <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch} setMods={setMods} />
+                    <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch}/>
                 </div>
             </div>
         </div>
