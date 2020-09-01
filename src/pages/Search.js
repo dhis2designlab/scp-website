@@ -20,8 +20,7 @@ const packageListStyle = {
 }
 
 const Search = () => {
-  const packages = useSelector(state => state.packages)
-  const mods = useSelector(state => state.modifiers)
+  const packages = useSelector(state => state.packages.currPackages)
   const dispatch = useDispatch();
 
   const onSearch = (inputValue) => {
@@ -29,16 +28,16 @@ const Search = () => {
     dispatch(getPackages(inputValue))
   }
 
-  const setMods = (mods) => {
-    console.log(`mods = `, mods)
-    dispatch(setModifiers(mods))
+  const setMods = (modList) => {
+    console.log(`mods = `, modList)
+    dispatch(setModifiers(modList))
   }
   return (
     <>
       <div className="pure-g content">
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search" onSearch={onSearch} setMods={setMods} mods={mods} />
+            <SearchField searchButtonText="Search" onSearch={onSearch} setMods={setMods} />
           </div>
         </div>
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5">

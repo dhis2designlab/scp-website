@@ -4,7 +4,7 @@ import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react
 import '../stylesheets/search-field.css'
 
 const SearchField = (props) => {
-    const { mods } = props;
+    //const { mods } = props;
     const [inputValue, setInputValue] = useState('');
     //more relevant if we allow different sets of search modifiers
     //const [modifiers, setModifiers] = useState([]);
@@ -76,6 +76,7 @@ const SearchField = (props) => {
             appendix = '+' + mod;
             input += appendix
         }
+        console.log(`Props `, props)
         props.setMods(mod)
         return input
     }
