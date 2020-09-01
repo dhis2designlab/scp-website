@@ -57,6 +57,9 @@ const Landing = () => {
     }, [])
 
     const onSearch = (inputValue) => {
+        if (inputValue === '') {
+            return;
+        }
         dispatch(getPackages(inputValue))
         history.push("/scp-website/search")
     }

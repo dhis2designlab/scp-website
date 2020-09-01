@@ -23,6 +23,9 @@ const Search = () => {
   const packages = useSelector(state => state.packages.currPackages)
 
   const onSearch = (inputValue) => {
+    if (inputValue === '') {
+      return;
+    }
     dispatch(getPackages(inputValue))
 }
 
