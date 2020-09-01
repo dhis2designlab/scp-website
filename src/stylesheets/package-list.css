@@ -4,3 +4,7 @@ ul.package-list  {
     -webkit-padding-start: 0;
     margin-block-start: 0;
 }
+
+.active {
+    background-color: rgba(0,123,255,0.4);
+}
