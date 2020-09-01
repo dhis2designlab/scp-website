@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { packages } from './actionTypes'
+import { packages, query } from './actionTypes'
 import { npms } from '../app/config'
 import qs from 'qs'
 
@@ -16,4 +16,12 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
         }
     })
     dispatch({ type: packages.fetchPackages, payload: response.data})
+}
+
+export const setModifiers = (mods) => (dispatch) => {
+    dispatch({type: query.setModifiers, payload: mods})
+}
+
+export const setSearchTerm = (input) => (dispatch) => {
+    dispatch({type: query.setSearchTerm, payload: input})
 }

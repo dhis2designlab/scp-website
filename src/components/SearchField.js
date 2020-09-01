@@ -1,88 +1,93 @@
 import React, { useState } from 'react'
 import 'purecss/build/pure.css'
+import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
-
-const searchFieldStyle = {
-    input: {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        borderWidth: '0px',
-        margin: 0,
-        backgroundColor: 'white',
-    },
-    button: {
-        borderWidth: '0px',
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        borderTopRightRadius: '4px',
-        borderBottomRightRadius: '4px',
-        margin: 0,
-    },
-    form: {
-        display: 'flex',
-        width: '100%',
-    }
-}
+import { useDispatch } from 'react-redux'
+import { setModifiers, setSearchTerm } from '../actions/npms'
 
 const SearchField = (props) => {
-    const style = props.style || searchFieldStyle;
-    const [inputValue, setInputValue] = useState('');
-    const [modifiers, setModifiers] = useState([]);
-    /*
-
     const dispatch = useDispatch();
-    const onSearch = (e) => {
-        console.log(inputValue)
-        e.preventDefault()
-        dispatch(getPackages(inputValue))
-    }
-    */
+    const [inputValue, setInputValue] = useState('');
 
     const onClick = (e) => {
         e.preventDefault()
-        var query = queryBuilder();
-        props.onSearch(query);
+        props.onSearch(queryBuilder([]));
+    }
+
+    // simple solution, not scalable
+    const onSecondary = (e) => {
+        e.preventDefault()
+        var currMods = ['keywords:dhis2']
+        props.onSearch(queryBuilder(currMods))
+    }
+
+    const onTertiary = (e) => {
+        e.preventDefault();
+        //TODO: make this far less hardcoded when we know the req searchterms.
+        var currMods = ['scope:dhis2']
+        props.onSearch(queryBuilder(currMods))
+
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            onClick(e);
+        }
     }
 
     const handleChange = (e) => {
-        setInputValue(e.target.value);
+        setInputValue(e.target.value)
     }
 
-    const toggleDhis2 = (e) => {
-        //e.preventDefault()
-
-        if (!modifiers.includes('scope:dhis2')) {
-            setModifiers([...modifiers, 'scope:dhis2'])
-        } else {
-            var arr = modifiers;
-            var index = modifiers.indexOf('scope:dhis2');
-            if (index > -1 ) {
-                arr.splice(index, 1);
-            }
-            setModifiers(arr);
-        }
-      }
-
-    // To be expanded upon?
-      const queryBuilder = () => {
+    const queryBuilder = (mod) => {
         var input = inputValue
-        var appendix = modifiers.join('+');
-        appendix = '+' + appendix
-        input += appendix;
-        return input;
-      }
-
+        if (input === '' && mod.length < 1) {
+            return null; //Empty search
+        }
+        if (mod.length > 0) {
+            var appendix = mod.join('+')
+            appendix = '+' + mod;
+            input += appendix
+        }
+        dispatch(setModifiers(mod))
+        dispatch(setSearchTerm(inputValue))
+        return input
+    }
+    
     return (
-        <>
-            <form className="pure-form" style={searchFieldStyle.form}>
-                <input autoComplete="off" id="search" type="text" style={style.input} className="pure-u-1" placeholder="Search for packages here..." value={inputValue} onChange={handleChange} />
-                <button type="submit" style={style.button} className="pure-button pure-button-primary" onClick={onClick}>{props.searchButtonText !== undefined ? props.searchButtonText : `Search`}</button>
-            </form>
-            <div className="custom-control custom-switch">
-                <input type="checkbox" className="custom-control-input" onChange={toggleDhis2} id="customSwitches" />
-                <label className="custom-control-label" htmlFor="customSwitches">Toggle dhis2 search</label>
-            </div>
-        </>
+
+        <InputGroup>
+            <FormControl
+                placeholder={props.placeHolderText()}
+                aria-label="Search for component"
+                aria-describedby="basic-addon2"
+                value={inputValue}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+            <InputGroup.Append>
+                <Button 
+                    variant="outline-secondary"
+                    onClick={onClick}
+                >
+                    {props.searchButtonText !== undefined ? props.searchButtonText : `Search`}
+                </Button>
+                <DropdownButton
+                    as={InputGroup.Append}
+                    className="dropdownbutton"
+                    variant="outline-secondary"
+                    title=""
+                    id="input-group-dropdown-2"
+                >
+                    <Dropdown.Item onClick={onClick}>Search all</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={onSecondary}>Search all community packages</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={onTertiary}>Search verified packages</Dropdown.Item>
+                </DropdownButton>
+            </InputGroup.Append>
+        </InputGroup>
+
     )
 }
 

@@ -3,4 +3,10 @@
 
 export const packages = {
     fetchPackages: 'packages/fetchPackages'
-} 
+}
+
+export const query = {
+    setModifiers: 'searchTerm/setModifiers',
+    setSearchTerm: 'searchTerm/setSearchTerm'
+
+}
