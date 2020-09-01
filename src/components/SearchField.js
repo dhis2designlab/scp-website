@@ -3,33 +3,10 @@ import 'purecss/build/pure.css'
 import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
 
-const searchFieldStyle = {
-    input: {
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0,
-        borderWidth: '0px',
-        margin: 0,
-        backgroundColor: 'white',
-    },
-    button: {
-        borderWidth: '0px',
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        borderTopRightRadius: '4px',
-        borderBottomRightRadius: '4px',
-        margin: 0,
-    },
-    form: {
-        display: 'flex',
-        width: '100%',
-    }
-}
-
 const SearchField = (props) => {
-    const style = props.style || searchFieldStyle;
     const [inputValue, setInputValue] = useState('');
     //more relevant if we allow different sets of search modifiers
-    const [modifiers, setModifiers] = useState([]);
+    //const [modifiers, setModifiers] = useState([]);
     /*
 
     const dispatch = useDispatch();
@@ -50,6 +27,21 @@ const SearchField = (props) => {
         e.preventDefault()
         var dhisModifier = 'scope:dhis2';
         props.onSearch(queryBuilder(dhisModifier))
+    }
+
+    const onTertiary = (e) => {
+        e.preventDefault();
+        //TODO: make this far less hardcoded when we know the exact searchterms.
+        var verifiedModifier = 'keywords:dhis2+not:deprecated+not:insecure';
+        props.onSearch(queryBuilder(verifiedModifier))
+
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            //might need to change this if the general method of sending input is changed
+            onClick(e);
+        }
     }
 
     const handleChange = (e) => {
@@ -75,7 +67,7 @@ const SearchField = (props) => {
     // 
     const queryBuilder = (mod) => {
         var input = inputValue
-        if (mod != '') {
+        if (mod !== '') {
             //var appendix = modifiers.join('+');
             var appendix = '+' + mod;
             input += appendix
@@ -91,6 +83,7 @@ const SearchField = (props) => {
                 aria-describedby="basic-addon2"
                 value={inputValue} 
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
             />
             <InputGroup.Append>
                 <Button 
@@ -107,6 +100,8 @@ const SearchField = (props) => {
                     <Dropdown.Item onClick={onClick}>Search all</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={onSecondary}>Search dhis2 namespace</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={onTertiary}>Search verified packages</Dropdown.Item>
                 </DropdownButton>
             </InputGroup.Append>
         </InputGroup>
