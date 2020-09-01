@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import 'purecss/build/pure.css'
 import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
 import { useDispatch } from 'react-redux'
-import { setModifiers } from '../actions/npms'
+import { setModifiers, setSearchTerm } from '../actions/npms'
 
 const SearchField = (props) => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
+    const searchTerm = useSelector(state => state.query.searchTerm)
+    const mods = useSelector(state => state.query.modifiers)
 
     const onClick = (e) => {
         e.preventDefault()
@@ -37,32 +40,29 @@ const SearchField = (props) => {
     }
 
     const handleChange = (e) => {
-        setInputValue(e.target.value);
-    }
-
-    const setMods = (modList) => {
-        dispatch(setModifiers(modList))
+        setInputValue(e.target.value)
     }
 
     const queryBuilder = (mod) => {
         var input = inputValue
         if (mod.length > 0) {
-            var appendix = mod.join('+');
+            var appendix = mod.join('+')
             appendix = '+' + mod;
             input += appendix
         }
         console.log(`Props `, props)
         dispatch(setModifiers(mod))
+        dispatch(setSearchTerm(inputValue))
         return input
     }
     
     return (
         <InputGroup>
             <FormControl
-                placeholder="Search for component"
+                placeholder={searchTerm !== null ? (searchTerm !== '' ? searchTerm : "All") : "Search for component"}
                 aria-label="Search for component"
                 aria-describedby="basic-addon2"
-                value={inputValue} 
+                value={inputValue}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />

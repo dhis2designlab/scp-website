@@ -5,6 +5,8 @@ export const packages = {
     fetchPackages: 'packages/fetchPackages'
 }
 
-export const modifiers = {
-    setModifiers: 'modifiers/setModifiers'
+export const query = {
+    setModifiers: 'searchTerm/setModifiers',
+    setSearchTerm: 'searchTerm/setSearchTerm'
+
 }

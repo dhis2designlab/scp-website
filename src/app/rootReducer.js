@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
 //import packages from '../reducers/packages'
-import modifiersReducer from '../reducers/modifiers'
+import queryReducer from '../reducers/query'
 import packagesReducer from '../reducers/packages'
+
 const rootReducer = combineReducers({
     packages: packagesReducer,
-    modifiers: modifiersReducer
+    query: queryReducer
 })
 
 export default rootReducer
