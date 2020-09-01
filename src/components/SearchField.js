@@ -26,7 +26,7 @@ const SearchField = (props) => {
     // simple solution, not scalable
     const onSecondary = (e) => {
         e.preventDefault()
-        var currMods = ['scope:dhis2']
+        var currMods = ['keywords:dhis2']
         //var dhisModifier = 'scope:dhis2';
         props.onSearch(queryBuilder(currMods))
     }
@@ -34,7 +34,7 @@ const SearchField = (props) => {
     const onTertiary = (e) => {
         e.preventDefault();
         //TODO: make this far less hardcoded when we know the exact searchterms.
-        var currMods = ['keywords:dhis2', 'not:deprecated', 'not:insecure']
+        var currMods = ['scope:dhis2']
         //var verifiedModifier = 'keywords:dhis2+not:deprecated+not:insecure';
         
         props.onSearch(queryBuilder(currMods))
@@ -107,7 +107,7 @@ const SearchField = (props) => {
                 >
                     <Dropdown.Item onClick={onClick}>Search all</Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item onClick={onSecondary}>Search dhis2 namespace</Dropdown.Item>
+                    <Dropdown.Item onClick={onSecondary}>Search all community packages</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={onTertiary}>Search verified packages</Dropdown.Item>
                 </DropdownButton>
