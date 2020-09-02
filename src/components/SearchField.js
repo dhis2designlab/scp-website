@@ -11,21 +11,32 @@ const SearchField = (props) => {
 
     const onClick = (e) => {
         e.preventDefault()
-        props.onSearch(queryBuilder([]));
+        dispatchTerms()
+        props.onSearch(inputValue);
+    }
+
+    // simple solution, not scalable
+    const onSearchAll = (e) => {
+        e.preventDefault()
+        var currMods = []
+        dispatchTerms(currMods)
+        props.onSearch(inputValue)
     }
 
     // simple solution, not scalable
     const onSecondary = (e) => {
         e.preventDefault()
         var currMods = ['keywords:dhis2']
-        props.onSearch(queryBuilder(currMods))
+        dispatchTerms(currMods)
+        props.onSearch(inputValue)
     }
 
     const onTertiary = (e) => {
         e.preventDefault();
         //TODO: make this far less hardcoded when we know the req searchterms.
         var currMods = ['scope:dhis2']
-        props.onSearch(queryBuilder(currMods))
+        dispatchTerms(currMods)
+        props.onSearch(inputValue)
 
     }
 
@@ -39,21 +50,26 @@ const SearchField = (props) => {
         setInputValue(e.target.value)
     }
 
-    const queryBuilder = (mod) => {
-        var input = inputValue
-        if (input === '' && mod.length < 1) {
-            return null; //Empty search
-        }
-        if (mod.length > 0) {
-            var appendix = mod.join('+')
-            appendix = '+' + mod;
-            input += appendix
-        }
-        dispatch(setModifiers(mod))
-        dispatch(setSearchTerm(inputValue))
-        return input
-    }
+    // const queryBuilder = (mod) => {
+    //     var input = inputValue
+    //     if (input === '' && mod.length < 1) {
+    //         return null; //Empty search
+    //     }
+    //     if (mod.length > 0) {
+    //         var appendix = mod.join('+')
+    //         appendix = '+' + mod;
+    //         input += appendix
+    //     }
+    //     dispatch(setModifiers(mod))
+    //     dispatch(setSearchTerm(inputValue))
+    //     return input
+    // }
     
+    const dispatchTerms = (mod) => {
+        dispatch(setSearchTerm(inputValue))
+        if(mod !== undefined) dispatch(setModifiers(mod))
+    }
+
     return (
 
         <InputGroup>
@@ -79,7 +95,7 @@ const SearchField = (props) => {
                     title=""
                     id="input-group-dropdown-2"
                 >
-                    <Dropdown.Item onClick={onClick}>Search all</Dropdown.Item>
+                    <Dropdown.Item onClick={onSearchAll}>Search all</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={onSecondary}>Search all community packages</Dropdown.Item>
                     <Dropdown.Divider />

@@ -29,7 +29,7 @@ const Search = () => {
   const searchTerm = useSelector(state => state.query.searchTerm)
 
   const onSearch = (inputValue) => {
-    if (inputValue !== null) {
+    if (inputValue.length > 0) {
       dispatch(getPackages(inputValue))
     }
   }

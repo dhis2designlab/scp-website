@@ -12,7 +12,7 @@ const modifiers = (state = [] , action) => {
     }
 }
 
-const searchTerm = (state = null , action) => {
+const searchTerm = (state = '' , action) => {
     switch (action.type) {
       case query.setSearchTerm:
         return action.payload
