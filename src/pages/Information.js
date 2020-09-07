@@ -38,6 +38,24 @@ const Information = () => {
         </p>
     </>
 
+    const websiteInfo = <>
+        <h3 style={{marginBottom:'25px'}}>DHIS2 Component Search</h3>
+        <p>
+            The DHIS2 Component Search is a website to search for components created by the HISP community.
+        </p>
+        <p>
+            There are currently three "types" of searches:
+        </p>
+        <ul>
+            <li>All. This searches the entire npm registry.</li>
+            <li>Unverified. This searches the entire npm registry within one particular keyword, e.g. <code>dhis2</code> or <code>dhis2-ui</code></li>
+            <li>Verified. Almost the same as unverified, these are components given a "seal of approval" from the core team</li>
+        </ul>
+        <p>
+            <a href="https://github.com/haheskja/scp-website" rel="noopener noreferrer" target="_blank">The git repository for Component Search</a>
+        </p>
+    </>
+
     return (
         <>
             <div className="pure-g content">
@@ -58,7 +76,7 @@ const Information = () => {
                                 </div>
                             </div>
                             <div className="pure-u-3-4">
-                                { (state.section === "website-info") ? <p>Website Info</p> : null }
+                                { (state.section === "website-info") ? websiteInfo : null }
                                 { (state.section === "cli-info") ? cliInfo : null }
                             </div>
                         </div>
