@@ -5,8 +5,10 @@ export const packages = {
     fetchPackages: 'packages/fetchPackages'
 }
 
+//change to query/*
 export const query = {
-    setModifiers: 'searchTerm/setModifiers',
-    setSearchTerm: 'searchTerm/setSearchTerm'
+    setModifiers: 'query/setModifiers',
+    setSearchTerm: 'query/setSearchTerm',
+    setOffset: 'query/setOffset'
 
 }

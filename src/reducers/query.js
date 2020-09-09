@@ -21,9 +21,19 @@ const searchTerm = (state = '' , action) => {
     }
 }
 
+const offset = (state = 0, action) => {
+  switch (action.type) {
+    case query.setOffset:
+      return action.payload
+    default:
+      return state 
+  }
+}
+
 const queryReducer = combineReducers({
     modifiers,
-    searchTerm
+    searchTerm,
+    offset
 })
   
 export default queryReducer

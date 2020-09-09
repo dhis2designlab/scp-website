@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux'
 import { packages } from '../actions/actionTypes'
 
-const initialState = null
-
-const currPackages = (state = initialState, action) => {
+const currPackages = (state = [], action) => {
   switch (action.type) {
     case packages.fetchPackages:
       return [
-        ...action.payload.results,
+        ...state,
+        ...action.payload.results
       ]
     default:
       return state

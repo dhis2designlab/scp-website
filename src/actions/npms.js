@@ -7,13 +7,15 @@ import qs from 'qs'
  * Simple method for fetching a set of packages from npms and then dispatching them to get stored in the Redux store.
  */
 export const getPackages = (inputValue) => async (dispatch, getState) => {
-    const {modifiers} = getState().query
+    const {modifiers, offset} = getState().query
 
     const searchString = queryBuilder(inputValue, modifiers)
 
     const response = await axios.get(npms.baseUrl, { 
         params: { 
             q: searchString,
+            from: offset
+
         },
         paramsSerializer: params => {
             return qs.stringify(params, {encode: false})
@@ -28,6 +30,10 @@ export const setModifiers = (mods) => (dispatch) => {
 
 export const setSearchTerm = (input) => (dispatch) => {
     dispatch({type: query.setSearchTerm, payload: input})
+}
+
+export const setOffset = (offset) => (dispatch) => {
+    dispatch({type: query.setOffset, payload: offset})
 }
 
 const queryBuilder = (inputValue, mod) => {

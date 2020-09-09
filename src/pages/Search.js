@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import '../stylesheets/search.css'
 import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getPackages } from '../actions/npms'
 
 const packageListStyle = {
@@ -22,7 +21,6 @@ const packageListStyle = {
 
 const Search = () => {
   const dispatch = useDispatch();
-  const packages = useSelector(state => state.packages.currPackages)
   //Change when more is known about req search functionality
   const community = useSelector(state => state.query.modifiers)[0] === 'keywords:dhis2';
   const verified = useSelector(state => state.query.modifiers)[0] === 'scope:dhis2';
@@ -65,7 +63,7 @@ const Search = () => {
         </div>
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5">
           <div className="l-box">
-            <PackageList style={packageListStyle} packages={packages} packageCount={packages ? packages.length : 0} />
+            <PackageList style={packageListStyle} />
           </div>
         </div>
       </div>

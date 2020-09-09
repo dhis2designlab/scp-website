@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getPackages, setOffset } from '../actions/npms'
 import GithubCard from './GithubCard'
 import ReactTooltip from 'react-tooltip'
 import moment from 'moment'
@@ -54,13 +56,32 @@ const packageBoxStyle = {
 
 
 const PackageList = (props) => {
-    const { style, packages, packageCount, packagesPerPage = 10 } = props;
-    const [offset, setOffset] = useState(0);
+    const { style } = props;
+
+    const dispatch = useDispatch();
+    const [offset, setCurrOffset] = useState(0);
+
+    const packages = useSelector(state => state.packages.currPackages);
+    const totalPackages = useSelector(state => state.packages.totalPackages);
+    const searchTerm = useSelector(state => state.query.searchTerm);
+
+    const packageCount = packages ? packages.length : 0;
+    const packagesPerPage = 10;
 
     let handlePageChange = (data) => {
+        //if pageindex > math.ceil(packagecount/packagesperpage), we load more packages. v0.1
+
         let pageIndex = data.selected;
+
+        //maybe store currpacknum seperately in redux for incase of loadfailure?
+        if (pageIndex + 1 > Math.floor(packageCount/packagesPerPage)) {
+            //dispatch with offset = currpacknum
+            dispatch(setOffset(pageIndex * packagesPerPage));
+            dispatch(getPackages(searchTerm))
+        }
+
         let offset = Math.ceil(pageIndex * packagesPerPage);
-        setOffset(offset);
+        setCurrOffset(offset);
     };
 
 
@@ -93,7 +114,7 @@ const PackageList = (props) => {
                 </li>)}
             </ul>
             <div id="react-paginate" className="center"><ReactPaginate
-                pageCount={Math.ceil(packageCount / packagesPerPage)}
+                pageCount={Math.ceil(totalPackages / packagesPerPage)}
                 previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} />}
                 nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} />}
                 onPageChange={handlePageChange}
