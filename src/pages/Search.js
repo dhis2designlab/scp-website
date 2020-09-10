@@ -5,8 +5,9 @@ import '../stylesheets/search.css'
 import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
+import ListGroup from 'react-bootstrap/ListGroup'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPackages, setOffset, setDisplayOffset } from '../actions/npms'
+import { getPackages, setOffset, setDisplayOffset, setFilters, setVerified, setModifiers } from '../actions/npms'
 
 const packageListStyle = {
   item: {
@@ -22,8 +23,9 @@ const packageListStyle = {
 const Search = () => {
   const dispatch = useDispatch();
   //Change when more is known about req search functionality
-  const community = useSelector(state => state.query.modifiers)[0] === 'keywords:dhis2';
-  const verified = useSelector(state => state.query.modifiers)[0] === 'scope:dhis2';
+  const mod = useSelector(state => state.query.modifiers)
+  const community = mod[0] === 'keywords:dhis2';
+  const verified = mod[0] === 'scope:dhis2';
   const searchTerm = useSelector(state => state.query.searchTerm)
 
   const onSearch = (inputValue) => {
@@ -48,6 +50,24 @@ const Search = () => {
             : "All unverified community packages";
   }
 
+  const toggleFilter = (e) => {
+    if (e.target.id !== mod[0]) {
+      console.log(e.target.id)
+      var md = [];
+      switch (e.target.id) {
+        case 'verified':
+          md = ['scope:dhis2']
+          break;
+        case 'unverified':
+          md = ['keywords:dhis2']
+          break;
+      }
+      dispatch(setModifiers(md))
+      //dispatch(getPackages(searchTerm))
+      onSearch(searchTerm);
+    }
+  }
+
 
   return (
     <>
@@ -63,9 +83,18 @@ const Search = () => {
             }
           </div>
         </div>
-        <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5">
+        <div className="pure-u-4-5 pure-u-md-4-5 pure-u-lg-4-5">
           <div className="l-box">
             <PackageList style={packageListStyle} />
+          </div>
+        </div>
+        <div className="pure-u-1-5">
+          <div className="l-box">
+            <ListGroup variant="flush">
+              <ListGroup.Item id='all' action onClick={toggleFilter}>Toggle all</ListGroup.Item>
+              <ListGroup.Item id='unverified' action onClick={toggleFilter}>Toggle Unverified</ListGroup.Item>
+              <ListGroup.Item id='verified' action onClick={toggleFilter}>Toggle verified</ListGroup.Item>
+            </ListGroup>
           </div>
         </div>
       </div>

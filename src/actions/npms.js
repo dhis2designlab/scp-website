@@ -21,7 +21,6 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
             return qs.stringify(params, {encode: false})
         }
     })
-    console.log(`A search is made`)
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
@@ -37,8 +36,8 @@ export const setOffset = (offset) => (dispatch) => {
     dispatch({type: query.setOffset, payload: offset})
 }
 
-export const setFilters = (filters) => (dispatch) => {
-    dispatch({type: filter.setFilters, payload: filters})
+export const setVerified = (verified) => (dispatch) => {
+    dispatch({type: filter.setVerified, payload: verified})
 }
 
 export const setDisplayOffset = (displayOffset) => (dispatch) => {

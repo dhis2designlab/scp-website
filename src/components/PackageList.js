@@ -66,11 +66,13 @@ const PackageList = (props) => {
     const searchTerm = useSelector(state => state.query.searchTerm);
     const mods = useSelector(state => state.query.modifiers);
     const offset = useSelector(state => state.filter.displayOffset)
+    const filter = useSelector(state => state.filter.verified)
 
     const packageCount = packages ? packages.length : 0;
     const packagesPerPage = 10;
 
     useEffect(() => {
+        //rough solution again
         setPackSlice(packages.slice(offset, offset + packagesPerPage))
     }, [packages, offset, packagesPerPage, mods])
 
