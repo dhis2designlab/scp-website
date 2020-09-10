@@ -6,7 +6,7 @@ import PackageList from '../components/PackageList'
 import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPackages } from '../actions/npms'
+import { getPackages, setOffset, setDisplayOffset } from '../actions/npms'
 
 const packageListStyle = {
   item: {
@@ -28,6 +28,8 @@ const Search = () => {
 
   const onSearch = (inputValue) => {
     if (inputValue.length > 0) {
+      dispatch(setDisplayOffset(0))
+      dispatch(setOffset(0));
       dispatch(getPackages(inputValue))
     }
   }

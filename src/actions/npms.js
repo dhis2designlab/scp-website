@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { packages, query } from './actionTypes'
+import { packages, query, filter } from './actionTypes'
 import { npms } from '../app/config'
 import qs from 'qs'
 
@@ -21,6 +21,7 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
             return qs.stringify(params, {encode: false})
         }
     })
+    console.log(`A search is made`)
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
@@ -34,6 +35,14 @@ export const setSearchTerm = (input) => (dispatch) => {
 
 export const setOffset = (offset) => (dispatch) => {
     dispatch({type: query.setOffset, payload: offset})
+}
+
+export const setFilters = (filters) => (dispatch) => {
+    dispatch({type: filter.setFilters, payload: filters})
+}
+
+export const setDisplayOffset = (displayOffset) => (dispatch) => {
+    dispatch({type: filter.setDisplayOffset, payload: displayOffset})
 }
 
 const queryBuilder = (inputValue, mod) => {

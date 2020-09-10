@@ -12,3 +12,8 @@ export const query = {
     setOffset: 'query/setOffset'
 
 }
+
+export const filter = {
+    setFilters: 'filter/setFilters',
+    setDisplayOffset: 'filter/setOffset'
+}

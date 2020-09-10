@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPackages, setOffset } from '../actions/npms'
+import { getPackages, setOffset, setDisplayOffset } from '../actions/npms'
 import GithubCard from './GithubCard'
 import ReactTooltip from 'react-tooltip'
 import moment from 'moment'
@@ -59,19 +59,20 @@ const PackageList = (props) => {
     const { style } = props;
 
     const dispatch = useDispatch();
-    const [offset, setCurrOffset] = useState(0);
     const [packSlice, setPackSlice] = useState([]);
 
     const packages = useSelector(state => state.packages.currPackages);
     const totalPackages = useSelector(state => state.packages.totalPackages);
     const searchTerm = useSelector(state => state.query.searchTerm);
+    const mods = useSelector(state => state.query.modifiers);
+    const offset = useSelector(state => state.filter.displayOffset)
 
     const packageCount = packages ? packages.length : 0;
     const packagesPerPage = 10;
 
     useEffect(() => {
         setPackSlice(packages.slice(offset, offset + packagesPerPage))
-    }, [packages, offset, packagesPerPage])
+    }, [packages, offset, packagesPerPage, mods])
 
     let handlePageChange = (data) => {
         let pageIndex = data.selected;
@@ -81,11 +82,10 @@ const PackageList = (props) => {
             dispatch(setOffset((pageIndex) * packagesPerPage));
             dispatch(getPackages(searchTerm))
         }
-
-        let offset = Math.ceil(pageIndex * packagesPerPage);
-        setCurrOffset(offset);
+        dispatch(setDisplayOffset(Math.ceil(pageIndex * packagesPerPage)))
     };
 
+    //let usePackages = packages.slice(offset, offset + packagesPerPage)
     if (packages === null) return (<p>Search for packages for them to be displayed here</p>)
     return (
         <>
