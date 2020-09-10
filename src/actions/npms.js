@@ -21,7 +21,7 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
             return qs.stringify(params, {encode: false})
         }
     })
-    dispatch({ type: packages.fetchPackages, payload: response.data})
+    dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
 export const setModifiers = (mods) => (dispatch) => {

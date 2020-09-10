@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPackages, setOffset } from '../actions/npms'
@@ -60,6 +60,7 @@ const PackageList = (props) => {
 
     const dispatch = useDispatch();
     const [offset, setCurrOffset] = useState(0);
+    const [packSlice, setPackSlice] = useState([]);
 
     const packages = useSelector(state => state.packages.currPackages);
     const totalPackages = useSelector(state => state.packages.totalPackages);
@@ -68,15 +69,16 @@ const PackageList = (props) => {
     const packageCount = packages ? packages.length : 0;
     const packagesPerPage = 10;
 
-    let handlePageChange = (data) => {
-        //if pageindex > math.ceil(packagecount/packagesperpage), we load more packages. v0.1
+    useEffect(() => {
+        setPackSlice(packages.slice(offset, offset + packagesPerPage))
+    }, [packages, offset, packagesPerPage])
 
+    let handlePageChange = (data) => {
         let pageIndex = data.selected;
 
-        //maybe store currpacknum seperately in redux for incase of loadfailure?
-        if (pageIndex + 1 > Math.floor(packageCount/packagesPerPage)) {
-            //dispatch with offset = currpacknum
-            dispatch(setOffset(pageIndex * packagesPerPage));
+        //A bit rough 
+        if (!packages[(pageIndex) * packagesPerPage]) {
+            dispatch(setOffset((pageIndex) * packagesPerPage));
             dispatch(getPackages(searchTerm))
         }
 
@@ -84,13 +86,11 @@ const PackageList = (props) => {
         setCurrOffset(offset);
     };
 
-
     if (packages === null) return (<p>Search for packages for them to be displayed here</p>)
-    let usePackages = packages.slice(offset, offset + packagesPerPage);
     return (
         <>
             <ul className="package-list" style={{ listStyleType: "none" }}>
-                {usePackages.map(p => <li key={p.package.name} style={style.item}>
+                {packSlice.map(p => <li key={p.package.name} style={style.item}>
                     <div className="pure-g" style={packageBoxStyle}>
                         <div className="pure-u-1" style={headerBoxStyle}>
                             <Link style={packageHeaderStyle} to={{
