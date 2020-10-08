@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { packages, query, filter } from './actionTypes'
-import { npms } from '../app/config'
+import { npms, unpkg } from '../app/config'
 import qs from 'qs'
 
 /**
@@ -21,6 +21,24 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
             return qs.stringify(params, {encode: false})
         }
     })
+
+    const promiseArray = []
+
+    for(let i = 0; i < response.data.results.length; i++){
+        const packageData = response.data.results[i]
+        promiseArray.push(getPackageJSON(`${packageData.package.name}@${packageData.package.version}/package.json`))
+    }
+
+    const unpkgResults = await Promise.all(promiseArray)
+
+    for(let i = 0; i < unpkgResults.length; i++){
+        response.data.results[i].packageJSON = {
+            ...unpkgResults[i],
+            // Placeholder to test searching on
+            dhis2components: ['name', 'name2', 'name3', 'name4']
+        }
+    }
+
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
@@ -55,4 +73,9 @@ const queryBuilder = (inputValue, mod) => {
         input += appendix
     }
     return input
+}
+
+const getPackageJSON = async (input) => {
+    const response = await axios.get(`${unpkg.baseUrl}/${input}`)
+    return response.data
 }
