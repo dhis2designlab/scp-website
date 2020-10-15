@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 import { query } from '../actions/actionTypes'
 
-const modifiers = (state = [] , action) => {
+const initialMods = ['keywords:dhis2-component-search']
+
+const modifiers = (state = initialMods, action) => {
     switch (action.type) {
       case query.setModifiers:
         return [

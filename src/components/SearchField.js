@@ -3,46 +3,55 @@ import 'purecss/build/pure.css'
 import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
 import { useDispatch } from 'react-redux'
-import { setModifiers, setSearchTerm } from '../actions/npms'
+import { getPackages, setOffset, setDisplayOffset, setFilters, setVerified, setModifiers, setSearchTerm } from '../actions/npms'
 
 const SearchField = (props) => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
 
-    const onClick = (e) => {
+    // const onClick = (e) => {
+    //     e.preventDefault()
+    //     dispatchTerms()
+    //     props.onSearch(inputValue);
+    // }
+
+    const onSearch = (e) => {
         e.preventDefault()
-        dispatchTerms()
-        props.onSearch(inputValue);
+        // dispatch(setDisplayOffset(0))
+        // dispatch(setOffset(0));
+        if(inputValue === '') return 
+        dispatch(setSearchTerm(inputValue))
+        dispatch(getPackages())
     }
 
     // simple solution, not scalable
-    const onSearchAll = (e) => {
-        e.preventDefault()
-        var currMods = []
-        dispatchTerms(currMods)
-        props.onSearch(inputValue)
-    }
+    // const onSearchAll = (e) => {
+    //     e.preventDefault()
+    //     var currMods = []
+    //     dispatchTerms(currMods)
+    //     props.onSearch(inputValue)
+    // }
 
     // simple solution, not scalable
-    const onSecondary = (e) => {
-        e.preventDefault()
-        var currMods = ['keywords:dhis2']
-        dispatchTerms(currMods)
-        props.onSearch(inputValue)
-    }
+    // const onSecondary = (e) => {
+    //     e.preventDefault()
+    //     var currMods = ['keywords:dhis2']
+    //     dispatchTerms(currMods)
+    //     props.onSearch(inputValue)
+    // }
 
-    const onTertiary = (e) => {
-        e.preventDefault();
-        //TODO: make this far less hardcoded when we know the req searchterms.
-        var currMods = ['scope:dhis2']
-        dispatchTerms(currMods)
-        props.onSearch(inputValue)
+    // const onTertiary = (e) => {
+    //     e.preventDefault();
+    //     //TODO: make this far less hardcoded when we know the req searchterms.
+    //     var currMods = ['scope:dhis2']
+    //     dispatchTerms(currMods)
+    //     props.onSearch(inputValue)
 
-    }
+    // }
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            onClick(e);
+            onSearch(e);
         }
     }
 
@@ -74,8 +83,8 @@ const SearchField = (props) => {
 
         <InputGroup>
             <FormControl
-                placeholder={props.placeHolderText()}
-                aria-label="Search for component"
+                placeholder="Search for components"
+                aria-label="Search for components"
                 aria-describedby="basic-addon2"
                 value={inputValue}
                 onChange={handleChange}
@@ -84,11 +93,11 @@ const SearchField = (props) => {
             <InputGroup.Append>
                 <Button 
                     variant="outline-secondary"
-                    onClick={onClick}
+                    onClick={onSearch}
                 >
                     {props.searchButtonText !== undefined ? props.searchButtonText : `Search`}
                 </Button>
-                <DropdownButton
+                {/* <DropdownButton
                     as={InputGroup.Append}
                     className="dropdownbutton"
                     variant="outline-secondary"
@@ -100,7 +109,7 @@ const SearchField = (props) => {
                     <Dropdown.Item onClick={onSecondary}>Search all community packages</Dropdown.Item>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={onTertiary}>Search verified packages</Dropdown.Item>
-                </DropdownButton>
+                </DropdownButton> */}
             </InputGroup.Append>
         </InputGroup>
 
