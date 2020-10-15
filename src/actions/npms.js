@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { packages, query, filter } from './actionTypes'
+import { packages, query, filter, components } from './actionTypes'
 import { npms, unpkg } from '../app/config'
 import qs from 'qs'
+import Fuse from 'fuse.js'
 
 /**
  * Simple method for fetching a set of packages from npms and then dispatching them to get stored in the Redux store.
@@ -39,6 +40,25 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
         }
     }
 
+    const componentList = []
+
+    for(let i = 0; i < response.data.results.length; i++){
+        const pack = response.data.results[i]
+        const packJsonComps = pack.packageJSON.dhis2components
+        for(let j = 0; j < packJsonComps.length; j++){
+            const comp = {
+                name: packJsonComps[j],
+                packageIndex: i
+            }
+            componentList.push(comp)
+        }
+    }
+    console.log(componentList)
+
+    const searchedList = search(componentList, inputValue)
+    
+    dispatch({ type: components.createList, payload: componentList})
+    dispatch({ type: components.searchList, payload: searchedList})
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
@@ -78,4 +98,18 @@ const queryBuilder = (inputValue, mod) => {
 const getPackageJSON = async (input) => {
     const response = await axios.get(`${unpkg.baseUrl}/${input}`)
     return response.data
+}
+
+const search = (list, inputValue) => {
+    const options = {
+        includeScore: true,
+        // Search in `author` and in `tags` array
+        keys: ['name']
+    }
+    const fuse = new Fuse(list, options)
+
+    const result = fuse.search(inputValue)
+    console.log(result)
+    if(result == 0) return []
+    return result
 }

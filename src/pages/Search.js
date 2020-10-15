@@ -3,6 +3,7 @@ import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import '../stylesheets/search.css'
 import PackageList from '../components/PackageList'
+import ComponentList from '../components/ComponentList'
 import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -85,7 +86,7 @@ const Search = () => {
         </div>
         <div className="pure-u-4-5 pure-u-md-4-5 pure-u-lg-4-5">
           <div className="l-box">
-            <PackageList style={packageListStyle} />
+            <ComponentList style={packageListStyle} />
           </div>
         </div>
         <div className="pure-u-1-5">

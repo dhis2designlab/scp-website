@@ -16,3 +16,8 @@ export const query = {
 export const filter = {
     setDisplayOffset: 'filter/setOffset'
 }
+
+export const components = {
+    createList: 'components/createList',
+    searchList: 'components/searchList' 
+}
