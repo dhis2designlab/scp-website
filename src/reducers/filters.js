@@ -9,8 +9,19 @@ const displayOffset = (state = 0, action) => {
             return state
     }
 }
+
+const searchTerm = (state = '' , action) => {
+    switch (action.type) {
+      case filter.setSearchTerm:
+        return action.payload
+      default:
+        return state
+    }
+}
+
 const filterReducer = combineReducers({
-    displayOffset
+    displayOffset,
+    searchTerm,
 })
 
 export default filterReducer

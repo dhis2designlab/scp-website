@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPackages, setOffset, setDisplayOffset } from '../actions/npms'
+import { setDisplayOffset } from '../actions/filters'
 import GithubCard from './GithubCard'
 import ReactTooltip from 'react-tooltip'
 import moment from 'moment'
@@ -57,36 +57,40 @@ const packageBoxStyle = {
 
 const ComponentList = (props) => {
     const { style } = props;
-
-    const dispatch = useDispatch();
-
+    const dispatch = useDispatch()
     const packages = useSelector(state => state.packages.currPackages);
     const allComponents = useSelector(state => state.components.all);
     const searchedComponents = useSelector(state => state.components.searched);
-    const searchTerm = useSelector(state => state.query.searchTerm)
-
-    if (allComponents.length === 0 || packages.length === 0) return (<p>Search for packages for them to be displayed here</p>)
+    const searchTerm = useSelector(state => state.filter.searchTerm)
+    const displayOffset = useSelector(state => state.filter.displayOffset)
+    const componentsPerPage = 5;
 
     if (searchedComponents.length === 0 && searchTerm.length !== 0) return (<p>No hits</p>)
 
-    // if (searchedComponents.length !== 0 && searchTerm.length !== 0) displayedList = searchedComponents
+    const displayedList = (searchedComponents.length !== 0 && searchTerm.length !== 0) ? searchedComponents : allComponents.map(comp => ({item: comp}))
 
-    const displayedList = (searchedComponents.length !== 0 && searchTerm.length !== 0) ? searchedComponents : allComponents
+    const paginatedPackages = displayedList.slice(displayOffset, displayOffset + componentsPerPage)
+
+    const handlePageClick = (data) => {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * componentsPerPage);
+        dispatch(setDisplayOffset(offset))
+    };
 
     return (
         <>
             <ul className="package-list" style={{ listStyleType: "none" }}>
-                {displayedList.map(p => <li key={p.item.name} style={style.item}>
+                {paginatedPackages.map((p, i) => <li key={i} style={style.item}>
                     <div className="pure-g" style={packageBoxStyle}>
                         <div className="pure-u-1" style={headerBoxStyle}>
                             <Link style={packageHeaderStyle} to={{
                                 pathname: "/scp-website/packageinfo",
                                 packageName: packages[p.item.packageIndex].package.name
-                            }}><h3 style={{ display: 'inline' }}>{p.item.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
+                            }}><h3 style={{ display: 'inline' }}>{p.item.name} - {packages[p.item.packageIndex].package.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
                             <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.repository }}><img alt="Repository" src={process.env.PUBLIC_URL + '/img/GitHub-Mark-32px.png'} /></Link>
                         </div>
                         <div className="pure-u-1">
-                            <p style={style.description}>{packages[p.item.packageIndex].package.description}</p>
+                            <p style={style.description}>{p.item.description}</p>
                             {packages[p.item.packageIndex].package.keywords ? <>
                                 <ul style={ulStyle}>
                                     {packages[p.item.packageIndex].package.keywords.map((i) => <li style={liStyle} key={i}><a href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a></li>)}
@@ -99,16 +103,15 @@ const ComponentList = (props) => {
 
                 </li>)}
             </ul>
-            {/* <div id="react-paginate" className="center"><ReactPaginate
-                pageCount={Math.ceil(totalPackages / packagesPerPage)}
+            <div id="react-paginate" className="center"><ReactPaginate
+                pageCount={Math.ceil(displayedList.length / componentsPerPage)}
                 previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} />}
                 nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} />}
-                onPageChange={handlePageChange}
+                onPageChange={handlePageClick}
                 breakClassName={'break-me'}
                 containerClassName={'pagination'}
                 subContainerClassName={'pages pagination'}
-                activeClassName={'active'} /></div> */}
-
+                activeClassName={'active'} /></div>
         </>
     )
 }

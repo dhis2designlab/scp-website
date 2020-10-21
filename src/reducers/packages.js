@@ -24,9 +24,19 @@ const totalPackages = (state = 0, action) => {
   }
 }
 
+const searched = (state = false, action) => {
+  switch (action.type) {
+    case packages.fetchPackages:
+      return true
+    default:
+      return state
+  }
+}
+
 const packagesReducer = combineReducers({
     currPackages,
-    totalPackages
+    totalPackages,
+    searched
 })
 
 export default packagesReducer

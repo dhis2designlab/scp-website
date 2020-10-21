@@ -1,0 +1,35 @@
+{
+"language": "react",
+"components": [
+    {
+        "name": "Organizational Unit Tree",
+        "export": "OrgUnitTree",
+        "description": "A simple OrgUnit Tree",
+        "dhis2Version": [ "32.0.0", "32.1.0", "33.0.0" ]
+    },
+    {
+        "name": "Button",
+        "export": "Button",
+        "description": "A generic button",
+        "dhis2Version": [ "32.0.0", "32.1.0", "33.0.0" ]
+    },
+    {
+        "name": "Covid-19 Visualizer",
+        "export": "CovidVisualizer",
+        "description": "Visualizer for Covid-19 data",
+        "dhis2Version": [ "32.0.0", "32.1.0", "33.0.0" ]
+    },
+    {
+        "name": "Headerbar",
+        "export": "Headerbar",
+        "description": "Just another header bar",
+        "dhis2Version": [ "32.0.0", "32.1.0", "33.0.0" ]
+    },
+    {
+        "name": "Tabs",
+        "export": "Tabs",
+        "description": "Tabs to structure data",
+        "dhis2Version": [ "32.0.0", "32.1.0", "33.0.0" ]
+    }
+]
+}

@@ -2,13 +2,10 @@ import React from 'react';
 import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import '../stylesheets/search.css'
-import PackageList from '../components/PackageList'
 import ComponentList from '../components/ComponentList'
 import SearchField from '../components/SearchField'
 import Badge from 'react-bootstrap/Badge'
-import ListGroup from 'react-bootstrap/ListGroup'
-import { useSelector, useDispatch } from 'react-redux'
-import { getPackages, setOffset, setDisplayOffset, setFilters, setVerified, setModifiers } from '../actions/npms'
+import { useSelector } from 'react-redux'
 
 const packageListStyle = {
   item: {
@@ -22,20 +19,9 @@ const packageListStyle = {
 }
 
 const Search = () => {
-  const dispatch = useDispatch();
-  //Change when more is known about req search functionality
   const mod = useSelector(state => state.query.modifiers)
   const community = mod[0] === 'keywords:dhis2';
   const verified = mod[0] === 'scope:dhis2';
-  const searchTerm = useSelector(state => state.query.searchTerm)
-
-  // const onSearch = (inputValue) => {
-  //   if (inputValue.length > 0) {
-  //     dispatch(setDisplayOffset(0))
-  //     dispatch(setOffset(0));
-  //     dispatch(getPackages(inputValue))
-  //   }
-  // }
 
   // //display different placeholders based on context
   // const placeHolderText = () => {

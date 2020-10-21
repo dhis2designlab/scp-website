@@ -1,27 +1,20 @@
 import React, { useState } from 'react'
 import 'purecss/build/pure.css'
-import { InputGroup, Button, Dropdown, DropdownButton, FormControl } from 'react-bootstrap'
+import { InputGroup, Button, FormControl } from 'react-bootstrap'
 import '../stylesheets/search-field.css'
 import { useDispatch } from 'react-redux'
-import { getPackages, setOffset, setDisplayOffset, setFilters, setVerified, setModifiers, setSearchTerm } from '../actions/npms'
+import { searchComponents, setSearchTerm, setDisplayOffset } from '../actions/filters'
 
 const SearchField = (props) => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
 
-    // const onClick = (e) => {
-    //     e.preventDefault()
-    //     dispatchTerms()
-    //     props.onSearch(inputValue);
-    // }
-
     const onSearch = (e) => {
         e.preventDefault()
-        // dispatch(setDisplayOffset(0))
-        // dispatch(setOffset(0));
-        if(inputValue === '') return 
+        dispatch(setDisplayOffset(0))
         dispatch(setSearchTerm(inputValue))
-        dispatch(getPackages())
+        dispatch(searchComponents())
+        if(props.navigateTo) props.navigateTo()
     }
 
     // simple solution, not scalable
@@ -57,26 +50,6 @@ const SearchField = (props) => {
 
     const handleChange = (e) => {
         setInputValue(e.target.value)
-    }
-
-    // const queryBuilder = (mod) => {
-    //     var input = inputValue
-    //     if (input === '' && mod.length < 1) {
-    //         return null; //Empty search
-    //     }
-    //     if (mod.length > 0) {
-    //         var appendix = mod.join('+')
-    //         appendix = '+' + mod;
-    //         input += appendix
-    //     }
-    //     dispatch(setModifiers(mod))
-    //     dispatch(setSearchTerm(inputValue))
-    //     return input
-    // }
-    
-    const dispatchTerms = (mod) => {
-        dispatch(setSearchTerm(inputValue))
-        if(mod !== undefined) dispatch(setModifiers(mod))
     }
 
     return (
