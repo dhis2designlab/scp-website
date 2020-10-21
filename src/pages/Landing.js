@@ -4,8 +4,6 @@ import 'purecss/build/pure.css'
 import '../stylesheets/landing.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch } from 'react-redux'
-import { getPackages } from '../actions/npms'
 import { useHistory } from 'react-router-dom'
 import { useEffect } from 'react';
 
@@ -47,7 +45,6 @@ const landingStyle = {
 
 
 const Landing = () => {
-    const dispatch = useDispatch();
     const history = useHistory();
     useEffect(() => {
         document.body.className = 'landing';
@@ -55,17 +52,6 @@ const Landing = () => {
             document.body.classList.remove('landing');
         }
     }, [])
-
-    const onSearch = (inputValue) => {
-        if (inputValue.length > 0) {
-            dispatch(getPackages(inputValue))
-            history.push("/scp-website/search")
-        }
-    }
-
-    const placeHolderText = () => {
-        return "Search for component";
-    }
     
     return (
         <div className="pure-g" style={landingStyle.content}>
@@ -78,7 +64,7 @@ const Landing = () => {
                         <p>Explore components created by the HISP community
                         </p>
                     </div>
-                    <SearchField placeHolderText={placeHolderText} searchButtonText={<FontAwesomeIcon icon={faSearch} />} onSearch={onSearch}/>
+                    <SearchField searchButtonText={<FontAwesomeIcon icon={faSearch} />} navigateTo={() => history.push("/scp-website/search")} />
                 </div>
             </div>
         </div>

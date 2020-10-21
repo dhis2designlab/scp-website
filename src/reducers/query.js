@@ -1,21 +1,15 @@
 import { combineReducers } from 'redux'
 import { query } from '../actions/actionTypes'
 
-const modifiers = (state = [] , action) => {
+// const initialMods = ['keywords:dhis2-component-search']
+const initialMods = ['@dhis2/ui-core']
+
+const modifiers = (state = initialMods, action) => {
     switch (action.type) {
       case query.setModifiers:
         return [
             ...action.payload
         ]
-      default:
-        return state
-    }
-}
-
-const searchTerm = (state = '' , action) => {
-    switch (action.type) {
-      case query.setSearchTerm:
-        return action.payload
       default:
         return state
     }
@@ -32,7 +26,6 @@ const offset = (state = 0, action) => {
 
 const queryReducer = combineReducers({
     modifiers,
-    searchTerm,
     offset
 })
   

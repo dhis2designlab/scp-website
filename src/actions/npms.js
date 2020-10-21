@@ -1,20 +1,21 @@
 import axios from 'axios'
-import { packages, query, filter } from './actionTypes'
+import { packages, query, filter, components } from './actionTypes'
 import { npms, unpkg } from '../app/config'
 import qs from 'qs'
+import testComponents from '../testComponents.json'
 
 /**
  * Simple method for fetching a set of packages from npms and then dispatching them to get stored in the Redux store.
  */
-export const getPackages = (inputValue) => async (dispatch, getState) => {
-    const {modifiers, offset} = getState().query
+export const getPackages = () => async (dispatch, getState) => {
+    const { modifiers, offset } = getState().query
 
-    const searchString = queryBuilder(inputValue, modifiers)
+    const searchString = queryBuilder(modifiers)
 
     const response = await axios.get(npms.baseUrl, { 
         params: { 
             q: searchString,
-            from: offset
+            // from: offset
 
         },
         paramsSerializer: params => {
@@ -29,25 +30,37 @@ export const getPackages = (inputValue) => async (dispatch, getState) => {
         promiseArray.push(getPackageJSON(`${packageData.package.name}@${packageData.package.version}/package.json`))
     }
 
-    const unpkgResults = await Promise.all(promiseArray)
+    const unpkgResults = await Promise.all(promiseArray).catch(e => console.log(e))
 
     for(let i = 0; i < unpkgResults.length; i++){
         response.data.results[i].packageJSON = {
             ...unpkgResults[i],
-            // Placeholder to test searching on
-            dhis2components: ['name', 'name2', 'name3', 'name4']
         }
     }
 
+    const componentList = []
+
+    for(let i = 0; i < response.data.results.length; i++){
+        // const pack = response.data.results[i]
+        // const packJsonComps = pack.packageJSON.dhis2ComponentSearch.components
+        const packJsonComps = testComponents.components
+        for(let j = 0; j < packJsonComps.length; j++){
+            const comp = {
+                name: packJsonComps[j].name,
+                export: packJsonComps[j].export,
+                description: packJsonComps[j].description,
+                packageIndex: i
+            }
+            componentList.push(comp)
+        }
+    }
+    
+    dispatch({ type: components.createList, payload: componentList})
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
 }
 
 export const setModifiers = (mods) => (dispatch) => {
     dispatch({type: query.setModifiers, payload: mods})
-}
-
-export const setSearchTerm = (input) => (dispatch) => {
-    dispatch({type: query.setSearchTerm, payload: input})
 }
 
 export const setOffset = (offset) => (dispatch) => {
@@ -58,21 +71,13 @@ export const setVerified = (verified) => (dispatch) => {
     dispatch({type: filter.setVerified, payload: verified})
 }
 
-export const setDisplayOffset = (displayOffset) => (dispatch) => {
-    dispatch({type: filter.setDisplayOffset, payload: displayOffset})
-}
-
-const queryBuilder = (inputValue, mod) => {
-    var input = inputValue
-    if (input === '' && mod.length < 1) {
-        return null; //Empty search
-    }
+const queryBuilder = (mod) => {
+    var query = ''
     if (mod.length > 0) {
         var appendix = mod.join('+')
-        appendix = '+' + mod;
-        input += appendix
+        query += appendix
     }
-    return input
+    return query
 }
 
 const getPackageJSON = async (input) => {

@@ -8,11 +8,15 @@ export const packages = {
 //change to query/*
 export const query = {
     setModifiers: 'query/setModifiers',
-    setSearchTerm: 'query/setSearchTerm',
-    setOffset: 'query/setOffset'
-
+    setOffset: 'query/setOffset',
 }
 
 export const filter = {
-    setDisplayOffset: 'filter/setOffset'
+    setDisplayOffset: 'filter/setOffset',
+    setSearchTerm: 'query/setSearchTerm',
+}
+
+export const components = {
+    createList: 'components/createList',
+    searchList: 'components/searchList' ,
 }

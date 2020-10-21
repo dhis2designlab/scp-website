@@ -15,6 +15,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "eslint": "^6.8.0",
+    "fuse.js": "^6.4.1",
     "moment": "^2.27.0",
     "prismjs": "^1.21.0",
     "purecss": "^2.0.3",
