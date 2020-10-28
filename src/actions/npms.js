@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { packages, query, filter, components } from './actionTypes'
-import { npms, unpkg } from '../app/config'
-import qs from 'qs'
-import testComponents from '../testComponents.json'
+import { npmRegistry, unpkg } from '../app/config'
 
 /**
  * Simple method for fetching a set of packages from npms and then dispatching them to get stored in the Redux store.
@@ -12,38 +10,32 @@ export const getPackages = () => async (dispatch, getState) => {
 
     const searchString = queryBuilder(modifiers)
 
-    const response = await axios.get(npms.baseUrl, { 
+    const response = await axios.get(npmRegistry.baseUrl, { 
         params: { 
-            q: searchString,
-            // from: offset
-
+            text: searchString,
         },
-        paramsSerializer: params => {
-            return qs.stringify(params, {encode: false})
-        }
     })
 
     const promiseArray = []
 
-    for(let i = 0; i < response.data.results.length; i++){
-        const packageData = response.data.results[i]
+    for(let i = 0; i < response.data.objects.length; i++){
+        const packageData = response.data.objects[i]
         promiseArray.push(getPackageJSON(`${packageData.package.name}@${packageData.package.version}/package.json`))
     }
 
     const unpkgResults = await Promise.all(promiseArray).catch(e => console.log(e))
 
     for(let i = 0; i < unpkgResults.length; i++){
-        response.data.results[i].packageJSON = {
+        response.data.objects[i].packageJSON = {
             ...unpkgResults[i],
         }
     }
 
     const componentList = []
 
-    for(let i = 0; i < response.data.results.length; i++){
-        // const pack = response.data.results[i]
-        // const packJsonComps = pack.packageJSON.dhis2ComponentSearch.components
-        const packJsonComps = testComponents.components
+    for(let i = 0; i < response.data.objects.length; i++){
+        const pack = response.data.objects[i]
+        const packJsonComps = pack.packageJSON.dhis2ComponentSearch.components
         for(let j = 0; j < packJsonComps.length; j++){
             const comp = {
                 name: packJsonComps[j].name,

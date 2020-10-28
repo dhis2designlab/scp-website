@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { query } from '../actions/actionTypes'
 
 // const initialMods = ['keywords:dhis2-component-search']
-const initialMods = ['@dhis2/ui-core']
+const initialMods = ['keywords:dhis2-component-search']
 
 const modifiers = (state = initialMods, action) => {
     switch (action.type) {

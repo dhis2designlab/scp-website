@@ -8,7 +8,7 @@ const currPackages = (state = [], action) => {
       if (action.payload.offset === 0) {
         arr = new Array(action.payload.data.total);
       }
-      arr.splice(action.payload.offset, action.payload.data.results.length, ...action.payload.data.results)
+      arr.splice(action.payload.offset, action.payload.data.objects.length, ...action.payload.data.objects)
       return arr
     default:
       return state
