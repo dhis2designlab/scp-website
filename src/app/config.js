@@ -4,6 +4,9 @@ const config = {
     },
     unpkg: {
         baseUrl: 'https://unpkg.com'
+    },
+    npmRegistry: {
+        baseUrl: 'https://registry.npmjs.com/-/v1/search'
     }
 }
 
