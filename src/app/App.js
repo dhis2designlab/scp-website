@@ -16,6 +16,7 @@ import '../stylesheets/grids-responsive-min.css'
 import 'prismjs/components/prism-jsx';
 import 'prismjs/themes/prism-okaidia.css';
 import { getPackages } from '../actions/npms'
+import { fetchVerified } from '../actions/github'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
 
   useEffect(() => {
     if(searched === false){
+      dispatch(fetchVerified())
       dispatch(getPackages())
     }
     

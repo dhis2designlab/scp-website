@@ -59,6 +59,7 @@ const ComponentList = (props) => {
     const { style } = props;
     const dispatch = useDispatch()
     const packages = useSelector(state => state.packages.currPackages);
+    const verifiedPackages = useSelector(state => state.packages.verified);
     const allComponents = useSelector(state => state.components.all);
     const searchedComponents = useSelector(state => state.components.searched);
     const searchTerm = useSelector(state => state.filter.searchTerm)
@@ -88,6 +89,7 @@ const ComponentList = (props) => {
                                 packageName: packages[p.item.packageIndex].package.name
                             }}><h3 style={{ display: 'inline' }}>{p.item.name} - {packages[p.item.packageIndex].package.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
                             <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.repository }}><img alt="Repository" src={process.env.PUBLIC_URL + '/img/GitHub-Mark-32px.png'} /></Link>
+                            {verifiedPackages[packages[p.item.packageIndex].package.name] ? 'Verified' : ''}
                         </div>
                         <div className="pure-u-1">
                             <p style={style.description}>{p.item.description}</p>

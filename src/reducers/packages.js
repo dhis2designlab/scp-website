@@ -15,6 +15,21 @@ const currPackages = (state = [], action) => {
   }
 }
 
+const verified = (state = {}, action) => {
+  switch (action.type) {
+    case packages.fetchVerifiedList:
+      const verifiedObj = {}
+      for(let i = 0; i < action.payload.length; i++){
+        const v = action.payload[i]
+        if(!verifiedObj[v.package_identifer]) verifiedObj[v.package_identifer] = []
+        verifiedObj[v.package_identifer] = [ ...verifiedObj[v.package_identifer], v.package_version]
+      }
+      return verifiedObj
+    default:
+      return state
+  }
+}
+
 const totalPackages = (state = 0, action) => {
   switch (action.type) {
     case packages.fetchPackages:
@@ -35,6 +50,7 @@ const searched = (state = false, action) => {
 
 const packagesReducer = combineReducers({
     currPackages,
+    verified,
     totalPackages,
     searched
 })

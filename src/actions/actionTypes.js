@@ -2,7 +2,8 @@
 // E.g todos/addTodo, packages/fetchPackages
 
 export const packages = {
-    fetchPackages: 'packages/fetchPackages'
+    fetchPackages: 'packages/fetchPackages',
+    fetchVerifiedList: 'packages/fetchVerifiedList'
 }
 
 //change to query/*
