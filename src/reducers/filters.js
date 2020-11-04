@@ -1,27 +1,33 @@
 import { combineReducers } from 'redux'
 import { filter } from '../actions/actionTypes'
 
-const displayOffset = (state = 0, action) => {
+const initialState = {
+    displayOffset: 0,
+    searchTerm: '',
+    framework: 'react'
+}
+
+const filterReducer = (state = initialState, action) => {
     switch (action.type) {
+        case filter.setFilters:
+            return {
+                ...state,
+                ...action.payload
+            }
         case filter.setDisplayOffset:
-            return action.payload
+            return {
+                ...state,
+                displayOffset: action.payload
+            }
+        case filter.setSearchTerm:
+            return {
+                ...state,
+                searchTerm: action.payload
+            }
         default:
             return state
     }
 }
 
-const searchTerm = (state = '' , action) => {
-    switch (action.type) {
-      case filter.setSearchTerm:
-        return action.payload
-      default:
-        return state
-    }
-}
-
-const filterReducer = combineReducers({
-    displayOffset,
-    searchTerm,
-})
 
 export default filterReducer

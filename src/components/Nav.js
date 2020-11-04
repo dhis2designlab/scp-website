@@ -6,7 +6,8 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'purecss/build/pure.css'
 import '../stylesheets/navigation.css'
-import { Navbar, Nav as Navigation } from 'react-bootstrap'
+import { Navbar, Nav as Navigation, Form, FormControl, Button } from 'react-bootstrap'
+import SearchField from './SearchField'
 
 const navBarBackground = {
   transparent: {
@@ -27,9 +28,14 @@ const Nav = (props) => {
         <Navbar.Brand as={Link} to="/scp-website"><img alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Navigation className="mr-auto">
-            <Navigation.Link as={Link} to="/scp-website">Home</Navigation.Link>
-            <Navigation.Link as={Link} to="/scp-website/search">Search</Navigation.Link>
+          <div className="w-50 mr-auto" style={{width: '200px'}}>
+            <SearchField searchButtonText="Search" />
+            {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+            <Button variant="outline-success">Search</Button> */}
+          </div>
+          <Navigation >
+            {/* <Navigation.Link as={Link} to="/scp-website">Home</Navigation.Link> */}
+            {/* <Navigation.Link as={Link} to="/scp-website/search">Search</Navigation.Link> */}
             <Navigation.Link as={Link} to="/scp-website/information">Information</Navigation.Link>
             <Navigation.Link as={Link} to="/scp-website/contact">Contact us</Navigation.Link>
           </Navigation>

@@ -41,6 +41,7 @@ export const getPackages = () => async (dispatch, getState) => {
                 name: packJsonComps[j].name,
                 export: packJsonComps[j].export,
                 description: packJsonComps[j].description,
+                language: pack.packageJSON.dhis2ComponentSearch.language,
                 packageIndex: i
             }
             componentList.push(comp)

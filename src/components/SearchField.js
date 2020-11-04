@@ -63,13 +63,13 @@ const SearchField = (props) => {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
             />
-            <InputGroup.Append>
+            {/* <InputGroup.Append>
                 <Button 
                     variant="outline-secondary"
                     onClick={onSearch}
                 >
                     {props.searchButtonText !== undefined ? props.searchButtonText : `Search`}
-                </Button>
+                </Button> */}
                 {/* <DropdownButton
                     as={InputGroup.Append}
                     className="dropdownbutton"
@@ -83,7 +83,7 @@ const SearchField = (props) => {
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={onTertiary}>Search verified packages</Dropdown.Item>
                 </DropdownButton> */}
-            </InputGroup.Append>
+            {/* </InputGroup.Append> */}
         </InputGroup>
 
     )

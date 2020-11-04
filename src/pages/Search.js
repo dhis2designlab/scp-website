@@ -3,8 +3,11 @@ import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import '../stylesheets/search.css'
 import ComponentList from '../components/ComponentList'
-import SearchField from '../components/SearchField'
+import FilterGroup from '../components/FilterGroup'
 import Badge from 'react-bootstrap/Badge'
+import InputGroup from 'react-bootstrap/InputGroup'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 import { useSelector } from 'react-redux'
 
 const packageListStyle = {
@@ -61,13 +64,7 @@ const Search = () => {
       <div className="pure-g content">
         <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
           <div className="l-box">
-            <SearchField searchButtonText="Search"/>
-            {verified &&
-              <Badge className="badge"variant="success">You are browsing verified community packages</Badge>
-            }
-            {community &&
-              <Badge className="badge" variant="primary">You are browsing unverified community packages</Badge>
-            }
+            <FilterGroup />
           </div>
         </div>
         <div className="pure-u-4-5 pure-u-md-4-5 pure-u-lg-4-5">

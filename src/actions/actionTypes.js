@@ -15,6 +15,7 @@ export const query = {
 export const filter = {
     setDisplayOffset: 'filter/setOffset',
     setSearchTerm: 'query/setSearchTerm',
+    setFilters: 'filter/setFilters',
 }
 
 export const components = {

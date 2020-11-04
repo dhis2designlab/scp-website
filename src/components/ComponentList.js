@@ -65,6 +65,7 @@ const ComponentList = (props) => {
     const searchTerm = useSelector(state => state.filter.searchTerm)
     const displayOffset = useSelector(state => state.filter.displayOffset)
     const componentsPerPage = 5;
+    console.log('rerendering')
 
     if (searchedComponents.length === 0 && searchTerm.length !== 0) return (<p>No hits</p>)
 

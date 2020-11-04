@@ -35,10 +35,10 @@ const App = () => {
       <Nav/>
       {searched ? (
         <Switch>
-          <Route exact path='/scp-website' component={Landing}/>
-          <Route path='/scp-website/search' component={Search}/>
-          <Route path='/scp-website/packageinfo' component={PackageInfo}/>
-          <Route path='/scp-website/Information' component={Information}/>
+          <Route exact path='/scp-website' component={Search}/>
+          {/* <Route path='/scp-website/search' component={Search}/> */}
+          {/* <Route path='/scp-website/packageinfo' component={PackageInfo}/> */}
+          <Route path='/scp-website/information' component={Information}/>
           <Route path='/scp-website/contact' component={Contact}/>
         </Switch>
       ) : (
