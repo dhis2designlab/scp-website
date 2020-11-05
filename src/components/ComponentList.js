@@ -60,17 +60,13 @@ const ComponentList = (props) => {
     const dispatch = useDispatch()
     const packages = useSelector(state => state.packages.currPackages);
     const verifiedPackages = useSelector(state => state.packages.verified);
-    const allComponents = useSelector(state => state.components.all);
     const searchedComponents = useSelector(state => state.components.searched);
-    const searchTerm = useSelector(state => state.filter.searchTerm)
     const displayOffset = useSelector(state => state.filter.displayOffset)
     const componentsPerPage = 5;
 
-    if (searchedComponents.length === 0 && searchTerm.length !== 0) return (<p>No hits</p>)
+    if (searchedComponents.length === 0) return (<p>No hits</p>)
 
-    const displayedList = (searchedComponents.length !== 0 && searchTerm.length !== 0) ? searchedComponents : allComponents.map(comp => ({item: comp}))
-
-    const paginatedPackages = displayedList.slice(displayOffset, displayOffset + componentsPerPage)
+    const paginatedPackages = searchedComponents.slice(displayOffset, displayOffset + componentsPerPage)
 
     const handlePageClick = (data) => {
         let selected = data.selected;
@@ -80,6 +76,7 @@ const ComponentList = (props) => {
 
     return (
         <>
+            <p>Showing {searchedComponents.length} components</p>
             <ul className="package-list" style={{ listStyleType: "none" }}>
                 {paginatedPackages.map((p, i) => <li key={i} style={style.item}>
                     <div className="pure-g" style={packageBoxStyle}>
@@ -106,7 +103,7 @@ const ComponentList = (props) => {
                 </li>)}
             </ul>
             <div id="react-paginate" className="center"><ReactPaginate
-                pageCount={Math.ceil(displayedList.length / componentsPerPage)}
+                pageCount={Math.ceil(searchedComponents.length / componentsPerPage)}
                 previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} />}
                 nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} />}
                 onPageChange={handlePageClick}

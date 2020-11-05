@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { packages, query, filter, components } from './actionTypes'
 import { npmRegistry, unpkg } from '../app/config'
+import { searchComponents } from './filters'
 
 /**
  * Simple method for fetching a set of packages from npms and then dispatching them to get stored in the Redux store.
@@ -41,6 +42,7 @@ export const getPackages = () => async (dispatch, getState) => {
                 name: packJsonComps[j].name,
                 export: packJsonComps[j].export,
                 description: packJsonComps[j].description,
+                language: pack.packageJSON.dhis2ComponentSearch.language,
                 packageIndex: i
             }
             componentList.push(comp)
@@ -49,6 +51,7 @@ export const getPackages = () => async (dispatch, getState) => {
     
     dispatch({ type: components.createList, payload: componentList})
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
+    dispatch(searchComponents())
 }
 
 export const setModifiers = (mods) => (dispatch) => {

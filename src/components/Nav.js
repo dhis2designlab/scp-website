@@ -6,7 +6,9 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'purecss/build/pure.css'
 import '../stylesheets/navigation.css'
+import { useHistory } from 'react-router-dom'
 import { Navbar, Nav as Navigation } from 'react-bootstrap'
+import SearchField from './SearchField'
 
 const navBarBackground = {
   transparent: {
@@ -20,16 +22,19 @@ const navBarBackground = {
 
 const Nav = (props) => {
   const location = useLocation();
+  const history = useHistory();
   const onLanding = location.pathname === '/';
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={onLanding ? navBarBackground.transparent : navBarBackground.dark}>
         <Navbar.Brand as={Link} to="/scp-website"><img alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Navigation className="mr-auto">
-            <Navigation.Link as={Link} to="/scp-website">Home</Navigation.Link>
-            <Navigation.Link as={Link} to="/scp-website/search">Search</Navigation.Link>
+          <div className="w-50 mr-auto" style={{width: '200px'}}>
+            <SearchField searchButtonText="Search" navigateTo={() => history.push("/scp-website/")}/>
+          </div>
+          <Navigation >
             <Navigation.Link as={Link} to="/scp-website/information">Information</Navigation.Link>
             <Navigation.Link as={Link} to="/scp-website/contact">Contact us</Navigation.Link>
           </Navigation>
