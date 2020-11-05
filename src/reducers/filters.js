@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
 import { filter } from '../actions/actionTypes'
 
 const initialState = {
     displayOffset: 0,
     searchTerm: '',
-    framework: 'react'
+    framework: 'all',
+    onlyVerified: false
 }
 
 const filterReducer = (state = initialState, action) => {

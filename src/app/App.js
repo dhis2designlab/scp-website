@@ -7,10 +7,8 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import Nav from '../components/Nav'
 import Loader from '../components/Loader'
-import Search from '../pages/Search'
+import Explore from '../pages/Explore'
 import Information from '../pages/Information'
-import Landing from '../pages/Landing'
-import PackageInfo from '../pages/PackageInfo'
 import Contact from '../pages/Contact'
 import '../stylesheets/grids-responsive-min.css'
 import 'prismjs/components/prism-jsx';
@@ -35,9 +33,7 @@ const App = () => {
       <Nav/>
       {searched ? (
         <Switch>
-          <Route exact path='/scp-website' component={Search}/>
-          {/* <Route path='/scp-website/search' component={Search}/> */}
-          {/* <Route path='/scp-website/packageinfo' component={PackageInfo}/> */}
+          <Route exact path='/scp-website' component={Explore}/>
           <Route path='/scp-website/information' component={Information}/>
           <Route path='/scp-website/contact' component={Contact}/>
         </Switch>
