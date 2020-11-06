@@ -1,11 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setDisplayOffset } from '../actions/filters'
-import GithubCard from './GithubCard'
 import ComponentCard from './ComponentCard'
-import ReactTooltip from 'react-tooltip'
-import moment from 'moment'
 import ReactPaginate from 'react-paginate'
 import 'purecss/build/pure.css'
 import '../stylesheets/paginate.css'
@@ -18,8 +14,6 @@ import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-s
 const ComponentList = (props) => {
     const { style } = props;
     const dispatch = useDispatch()
-    const packages = useSelector(state => state.packages.currPackages);
-    const verifiedPackages = useSelector(state => state.packages.verified);
     const searchedComponents = useSelector(state => state.components.searched);
     const displayOffset = useSelector(state => state.filter.displayOffset)
     const componentsPerPage = 5;
