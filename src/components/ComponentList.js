@@ -33,7 +33,7 @@ const ComponentList = (props) => {
             <p>Showing {searchedComponents.length} components</p>
             <div className="grid" >
                 {paginatedPackages.map((p, i) => 
-                    <ComponentCard p={p} style={style}/>
+                    <ComponentCard p={p} style={style} key={i}/>
                 )}
             </div>
             <div id="react-paginate" className="center"><ReactPaginate
