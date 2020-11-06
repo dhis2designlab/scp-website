@@ -1,0 +1,7 @@
+.grid{
+    display: grid;
+    /*Change to better fit size of screen*/
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-rows: repeat(3, minmax(17em, 1fr));  
+    gap: 5rem;
+}

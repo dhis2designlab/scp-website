@@ -11,17 +11,19 @@ html, body {
     font-size: 1rem;
     padding: 1.5em;
     margin-left: 6.8em;
+    margin-right: 6.8em;
 }
 
 .search-style {
     width: 100%;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 800px) {
     /* For mobile phones: */
     .content {
-        margin: 0;
-        padding: 0;
+        padding: 1em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
     }
 
     .l-box {
