@@ -19,6 +19,11 @@ export const setFilterAndSearch = (filters) => (dispatch, getState) => {
     dispatch(searchComponents())
 }
 
+export const setDhis2VersionAndSearch = (filters) => (dispatch, getState) => {
+    dispatch({type: filter.setFilters, payload: filters})
+    dispatch(searchComponents())
+}
+
 export const setSearchTerm = (input) => (dispatch) => {
     dispatch({type: filter.setSearchTerm, payload: input})
 }
@@ -34,16 +39,23 @@ export const setDisplayOffset = (displayOffset) => (dispatch) => {
  * @param {object} packages Top level object in redux store
  */
 const applyFilters = (list, filters, packages) => {
-    const { framework } = filters
-
+    const { framework, dhis2Versions } = filters
     return list.filter(component => {
         // Filter on framework
-        if(filters.framework !== 'all'){
+        if(framework !== 'all'){
             if(component.language !== framework) return false
         }
 
         // Filter on verified
         if(filters.onlyVerified && !trueIfVerified(component, packages)) return false
+
+        // Filter on dhis2 version
+        if(dhis2Versions.length !== 0){
+            for(let i = 0; i < dhis2Versions.length; i++){
+                const index = component.dhis2Versions.indexOf(dhis2Versions[i])
+                if(index === -1) return false
+            }
+        }
 
         return true
     })

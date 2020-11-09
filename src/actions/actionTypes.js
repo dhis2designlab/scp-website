@@ -3,7 +3,8 @@
 
 export const packages = {
     fetchPackages: 'packages/fetchPackages',
-    fetchVerifiedList: 'packages/fetchVerifiedList'
+    fetchVerifiedList: 'packages/fetchVerifiedList',
+    createDhis2VersionArray: 'packages/createDhis2VersionArray',
 }
 
 //change to query/*
@@ -16,6 +17,7 @@ export const filter = {
     setDisplayOffset: 'filter/setOffset',
     setSearchTerm: 'query/setSearchTerm',
     setFilters: 'filter/setFilters',
+    setDhis2Versions: 'filter/setDhis2Versions',
 }
 
 export const components = {

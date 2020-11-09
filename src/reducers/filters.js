@@ -4,7 +4,8 @@ const initialState = {
     displayOffset: 0,
     searchTerm: '',
     framework: 'all',
-    onlyVerified: false
+    onlyVerified: false,
+    dhis2Versions: []
 }
 
 const filterReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const filterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 searchTerm: action.payload
+            }
+        case filter.setDhis2Versions:
+            return {
+                ...state,
+                dhis2Versions: action.payload
             }
         default:
             return state

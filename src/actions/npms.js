@@ -33,6 +33,7 @@ export const getPackages = () => async (dispatch, getState) => {
     }
 
     const componentList = []
+    const allDhis2Versions = []
 
     for(let i = 0; i < response.data.objects.length; i++){
         const pack = response.data.objects[i]
@@ -43,12 +44,19 @@ export const getPackages = () => async (dispatch, getState) => {
                 export: packJsonComps[j].export,
                 description: packJsonComps[j].description,
                 language: pack.packageJSON.dhis2ComponentSearch.language,
+                dhis2Versions: packJsonComps[j].dhis2Version,
                 packageIndex: i
             }
             componentList.push(comp)
+            if(comp.dhis2Versions){
+                for(let k = 0; k < comp.dhis2Versions.length; k++){
+                    if(allDhis2Versions.indexOf(comp.dhis2Versions[k]) === -1) allDhis2Versions.push(comp.dhis2Versions[k])
+                }
+            }
         }
     }
     
+    dispatch({ type: packages.createDhis2VersionArray, payload: allDhis2Versions})
     dispatch({ type: components.createList, payload: componentList})
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
     dispatch(searchComponents())
