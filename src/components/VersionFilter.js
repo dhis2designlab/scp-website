@@ -5,6 +5,16 @@ import FormCheck from 'react-bootstrap/FormCheck'
 import semver from 'semver'
 import '../stylesheets/version-filter.css'
 
+const versionStyle = {
+    position:"relative"
+}
+
+const componentNumberStyle = {
+    position:"absolute",
+    right:"15px",
+    opacity: "0.5"
+}
+
 // from https://react-bootstrap.github.io/components/dropdowns/
 const CustomMenu = React.forwardRef(
 ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
@@ -52,7 +62,7 @@ const CheckElement = React.forwardRef(
 
                 />
                 <FormCheck.Label style={{width: '100%', cursor: 'pointer'}}>
-                    {version} ({compWithVersion})
+                    <div style={versionStyle}>{version} <span style={componentNumberStyle}>({compWithVersion})</span></div>
                 </FormCheck.Label>
             </FormCheck>
         );

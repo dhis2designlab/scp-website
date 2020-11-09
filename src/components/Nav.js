@@ -29,14 +29,18 @@ const Nav = (props) => {
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={onLanding ? navBarBackground.transparent : navBarBackground.dark}>
         <Navbar.Brand as={Link} to="/scp-website"><img alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
+        <div className="ml-auto mr-3 order-lg-second w-50" style={{ width: '200px' }}>
+          <SearchField searchButtonText="Search" navigateTo={() => history.push("/scp-website/")} />
+        </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <div className="w-50 mr-auto">
-            <SearchField searchButtonText="Search" navigateTo={() => history.push("/scp-website/")}/>
-          </div>
-          <Navigation >
-            <Navigation.Link as={Link} to="/scp-website/information">Information</Navigation.Link>
-            <Navigation.Link as={Link} to="/scp-website/contact">Contact us</Navigation.Link>
+        <Navbar.Collapse id="responsive-navbar-nav" >
+          <Navigation className="container-fluid justify-content-end">
+            <Navigation.Item>
+              <Navigation.Link as={Link} to="/scp-website/information">Information</Navigation.Link>
+            </Navigation.Item>
+            <Navigation.Item>
+              <Navigation.Link as={Link} to="/scp-website/contact">Contact us</Navigation.Link>
+            </Navigation.Item>
           </Navigation>
         </Navbar.Collapse>
       </Navbar>
