@@ -10,7 +10,7 @@ const FilterGroup = () => {
     const dispatch = useDispatch()
 
     const { framework, onlyVerified, dhis2Versions } = useSelector(state => state.filter)
-    const { allDhis2Versions } = useSelector(state => state.packages)
+    const { allDhis2Versions, dhis2VersionsById } = useSelector(state => state.packages)
 
     const handleFramework = ( newFramework ) => {
         dispatch(setFilterAndSearch({framework: newFramework}))
@@ -35,7 +35,7 @@ const FilterGroup = () => {
                 <Dropdown.Item onClick={() => handleFramework('react')}>React</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleFramework('angular')}>Angular</Dropdown.Item>
             </DropdownButton>
-            <VersionFilter allDhis2Versions={allDhis2Versions} dhis2Versions={dhis2Versions} handleDhis2Version={handleDhis2Version} />
+            <VersionFilter allDhis2Versions={allDhis2Versions} dhis2Versions={dhis2Versions} handleDhis2Version={handleDhis2Version} dhis2VersionsById={dhis2VersionsById} />
             <FormCheck 
                 id="verified-check" 
                 label="Show only verified components" 

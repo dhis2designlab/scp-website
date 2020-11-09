@@ -31,7 +31,7 @@ const Nav = (props) => {
         <Navbar.Brand as={Link} to="/scp-website"><img alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <div className="w-50 mr-auto" style={{width: '200px'}}>
+          <div className="w-50 mr-auto">
             <SearchField searchButtonText="Search" navigateTo={() => history.push("/scp-website/")}/>
           </div>
           <Navigation >

@@ -3,6 +3,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Dropdown from 'react-bootstrap/Dropdown'
 import FormCheck from 'react-bootstrap/FormCheck'
 import semver from 'semver'
+import '../stylesheets/version-filter.css'
 
 // from https://react-bootstrap.github.io/components/dropdowns/
 const CustomMenu = React.forwardRef(
@@ -23,7 +24,7 @@ const CustomMenu = React.forwardRef(
             onChange={(e) => setValue(e.target.value)}
             value={value}
         />
-        <ul className="list-unstyled">
+        <ul className="list-unstyled menuScroll" >
         {React.Children.toArray(children).filter(
             (child) =>
             !value || child.props.version.toLowerCase().startsWith(value),
@@ -35,11 +36,10 @@ const CustomMenu = React.forwardRef(
 );
 
 const CheckElement = React.forwardRef(
-    ({ style, className, version, handleDhis2Version, dhis2Versions }, ref) => {
+    ({ className, version, handleDhis2Version, dhis2Versions, compWithVersion }, ref) => {
         return (
             <FormCheck 
                 ref={ref}
-                style={style}
                 id={`check-${version}`}
                 inline={true} 
                 className={className}
@@ -49,16 +49,17 @@ const CheckElement = React.forwardRef(
                 <FormCheck.Input
                     type="checkbox"
                     onChange={() => handleDhis2Version(version)}
+
                 />
-                <FormCheck.Label style={{width: '100%'}}>
-                    {version}
+                <FormCheck.Label style={{width: '100%', cursor: 'pointer'}}>
+                    {version} ({compWithVersion})
                 </FormCheck.Label>
             </FormCheck>
         );
     },
 );
 
-const VersionFilter = ({allDhis2Versions, dhis2Versions, handleDhis2Version}) => {
+const VersionFilter = ({allDhis2Versions, dhis2Versions, handleDhis2Version, dhis2VersionsById}) => {
     return(
         <Dropdown>
             <Dropdown.Toggle variant="info" id="dropdown-basic">
@@ -66,7 +67,15 @@ const VersionFilter = ({allDhis2Versions, dhis2Versions, handleDhis2Version}) =>
             </Dropdown.Toggle>
 
             <Dropdown.Menu as={CustomMenu}>
-                {allDhis2Versions.sort(semver.rcompare).map(item => (<Dropdown.Item as={CheckElement} version={item} key={item} handleDhis2Version={handleDhis2Version} dhis2Versions={dhis2Versions} />))}
+                {allDhis2Versions.sort(semver.rcompare).map(item => (
+                    <Dropdown.Item 
+                        as={CheckElement} 
+                        version={item} key={item} 
+                        handleDhis2Version={handleDhis2Version} 
+                        dhis2Versions={dhis2Versions}
+                        compWithVersion={dhis2VersionsById[item]}
+                    />
+                ))}
             </Dropdown.Menu>
         </Dropdown>
     )

@@ -34,6 +34,7 @@ export const getPackages = () => async (dispatch, getState) => {
 
     const componentList = []
     const allDhis2Versions = []
+    const dhis2VersionsById = {}
 
     for(let i = 0; i < response.data.objects.length; i++){
         const pack = response.data.objects[i]
@@ -50,13 +51,19 @@ export const getPackages = () => async (dispatch, getState) => {
             componentList.push(comp)
             if(comp.dhis2Versions){
                 for(let k = 0; k < comp.dhis2Versions.length; k++){
-                    if(allDhis2Versions.indexOf(comp.dhis2Versions[k]) === -1) allDhis2Versions.push(comp.dhis2Versions[k])
+                    if(allDhis2Versions.indexOf(comp.dhis2Versions[k]) === -1) {
+                        allDhis2Versions.push(comp.dhis2Versions[k])
+                        dhis2VersionsById[comp.dhis2Versions[k]] = 1
+                    }
+                    else {
+                        dhis2VersionsById[comp.dhis2Versions[k]] += 1
+                    }
                 }
             }
         }
     }
     
-    dispatch({ type: packages.createDhis2VersionArray, payload: allDhis2Versions})
+    dispatch({ type: packages.createDhis2VersionArray, payload: { versionArray: allDhis2Versions, versionObject: dhis2VersionsById}})
     dispatch({ type: components.createList, payload: componentList})
     dispatch({ type: packages.fetchPackages, payload: {data: response.data, offset: offset}})
     dispatch(searchComponents())

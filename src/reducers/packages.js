@@ -51,7 +51,16 @@ const searched = (state = false, action) => {
 const allDhis2Versions = (state = [], action) => {
   switch (action.type) {
     case packages.createDhis2VersionArray:
-      return action.payload
+      return action.payload.versionArray
+    default:
+      return state
+  }
+}
+
+const dhis2VersionsById = (state = {}, action) => {
+  switch (action.type) {
+    case packages.createDhis2VersionArray:
+      return action.payload.versionObject
     default:
       return state
   }
@@ -63,6 +72,7 @@ const packagesReducer = combineReducers({
     totalPackages,
     searched,
     allDhis2Versions,
+    dhis2VersionsById
 })
 
 export default packagesReducer
