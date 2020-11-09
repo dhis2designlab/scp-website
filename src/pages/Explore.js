@@ -15,12 +15,12 @@ const packageListStyle = {
     color: 'gray',
   }
 }
-//<div className="pure-u-4-5 pure-u-md-4-5 pure-u-lg-4-5 mt-3">
+
 const Search = () => {
   return (
     <>
       <div className="pure-g content">
-        <div className="pure-u-1-1 pure-u-md-4-5 pure-u-lg-4-5 search">
+        <div className="pure-u-1">
           <div className="l-box">
             <FilterGroup />
           </div>
