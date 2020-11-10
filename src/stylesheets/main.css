@@ -43,16 +43,3 @@ html, body {
         padding: 1em;
     }
 }
-
-@media only screen and (max-width: 48em) {
-    /* For mobile phones: */
-    .content {
-        padding: 1em;
-        margin-left: 10em;
-        margin-right: 10em;
-    }
-
-    .l-box {
-        padding: 1em;
-    }
-}
