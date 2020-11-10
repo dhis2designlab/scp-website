@@ -10,8 +10,8 @@ html, body {
     font-family: 'Open Sans', serif;
     font-size: 1rem;
     padding: 1.5em;
-    margin-left: 6.8em;
-    margin-right: 6.8em;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .search-style {
@@ -28,5 +28,31 @@ html, body {
 
     .l-box {
         padding: 0;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    /* For mobile phones: */
+    .content {
+        padding: 1em;
+        margin-left: 15em;
+        margin-right: 15em;
+    }
+
+    .l-box {
+        padding: 1em;
+    }
+}
+
+@media only screen and (max-width: 48em) {
+    /* For mobile phones: */
+    .content {
+        padding: 1em;
+        margin-left: 10em;
+        margin-right: 10em;
+    }
+
+    .l-box {
+        padding: 1em;
     }
 }

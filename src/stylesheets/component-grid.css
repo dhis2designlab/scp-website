@@ -1,7 +1,11 @@
-.grid{
-    display: grid;
-    /*Change to better fit size of screen*/
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-    grid-template-rows: repeat(3, minmax(17em, 1fr));  
-    gap: 5rem;
+.grid-item-wrapper{
+    padding: 0.5em;
+}
+
+@media only screen and (min-width: 2000px) {
+    /* For mobile phones: */
+    .grid-item-wrapper{
+        padding: 1em;
+    }
+    
 }

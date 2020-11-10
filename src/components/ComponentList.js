@@ -1,18 +1,16 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setDisplayOffset } from '../actions/filters'
-import ComponentCard from './ComponentCard'
+import ComponentGrid from './ComponentGrid'
 import ReactPaginate from 'react-paginate'
 import 'purecss/build/pure.css'
 import '../stylesheets/paginate.css'
 import '../stylesheets/package-list.css'
-import '../stylesheets/component-grid.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
 
 const ComponentList = (props) => {
-    const { style } = props;
     const dispatch = useDispatch()
     const searchedComponents = useSelector(state => state.components.searched);
     const displayOffset = useSelector(state => state.filter.displayOffset)
@@ -31,11 +29,7 @@ const ComponentList = (props) => {
     return (
         <>
             <p>Showing {searchedComponents.length} components</p>
-            <div className="grid" >
-                {paginatedPackages.map((p, i) => 
-                    <ComponentCard p={p} style={style} key={i}/>
-                )}
-            </div>
+            <ComponentGrid className="grid-element" packages={paginatedPackages} />
             <div id="react-paginate" className="center"><ReactPaginate
                 pageCount={Math.ceil(searchedComponents.length / componentsPerPage)}
                 previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} />}

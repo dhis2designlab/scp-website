@@ -1,3 +1,82 @@
-#grid-item{
-    justify-self: center;
+.component-wrapper {
+    background-color: whitesmoke;
+    padding: 0.2em;
 }
+
+.name {
+}
+
+.version {
+    padding: 0.2em;
+    font-size: x-small;
+}
+.description {
+}
+
+.keywords {
+
+}
+
+.package {
+    padding: 0.2em;
+    color: grey;
+    font-size: small;
+}
+
+.publisher {
+    display:flex;
+    align-content: center;
+    padding: 0.2em;
+    font-size: small;
+    color: grey;
+}
+
+.npm-link {
+    display: flex;
+    justify-content: center;
+    padding: 0.2em;
+}
+
+.component-name {
+    margin: '0 10px 0 0px';
+}
+.component-name > h3 {
+    display: inline;
+}
+
+.package-publisher {
+    align-self: center;
+}
+
+.dot-green{
+    height: 7px;
+    width: 7px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-grey{
+    height: 7px;
+    width: 7px;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.version {
+    margin: 0 0 0 0;
+}
+
+.keyword-badge {
+    border-radius: 0;
+    float: left;
+    padding: 0.3em;
+    margin: 0.2em 0.2em 0.2em 0.2em;
+}
+
+a.keyword-link {
+    text-decoration: none;
+    color:white;
+}
+

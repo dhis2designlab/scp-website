@@ -1,79 +1,48 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import GithubCard from './GithubCard'
+import VerificationMarker from './VerificationMarker'
 import '../stylesheets/component.css'
-import ReactTooltip from 'react-tooltip'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
+import Badge from 'react-bootstrap/Badge'
 
-const ComponentCard = props=> {
-    const { p, style } = props;
+
+const ComponentCard = props => {
+    const { p } = props;
     const packages = useSelector(state => state.packages.currPackages);
     const verifiedPackages = useSelector(state => state.packages.verified);
 
-    //change and move when new card design is implemented
-    const liStyle = {
-        margin: "10px 10px 0 0",
-        padding: "5px",
-        backgroundColor: "#f2f2f2",
-        borderRadius: "4px",
-        float: 'left',
-    }
-    
-    const ulStyle = {
-        margin: 0,
-        padding: 0,
-        listStyleType: 'none',
-        overflow: 'hidden',
-    }
-    
-    const publisherStyle = {
-        margin: "1em 0 0.5em 0",
-    }
-    
-    const versionStyle = {
-        color: "#7f7f7f",
-        fontWeight: 300,
-        marginLeft: "10px",
-    }
-    
-    const packageHeaderStyle = {
-        margin: '0 10px 0 0px',
-        links: {
-            margin: '0 10px 0 0px',
-            color: 'inherit',
-        }
-    }
-    
-    const headerBoxStyle = {
-        margin: '15px 0 15px 0'
-    }
-    
-    const packageBoxStyle = {
-        //marginBottom: '15px',
-        boxShadow: '8px 1px 4px -6px rgba(190,190,190,0.1)',
-        backgroundColor: "#F0F8FF",
-    }
-
     return (
-        <div className="grid-item" id="grid-item" style={packageBoxStyle}>
-            <div className="grid-item-header" style={headerBoxStyle}>
-                <Link style={packageHeaderStyle} to={{
-                    pathname: "/scp-website/packageinfo",
-                    packageName: packages[p.item.packageIndex].package.name
-                }}><h3 style={{ display: 'inline' }}>{p.item.name} - {packages[p.item.packageIndex].package.name}</h3></Link> <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
-                <Link style={packageHeaderStyle.links} target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.repository }}><img alt="Repository" src={process.env.PUBLIC_URL + '/img/GitHub-Mark-32px.png'} /></Link>
-                {verifiedPackages[packages[p.item.packageIndex].package.name] ? 'Verified' : ''}
+        <div className="component-wrapper pure-g">
+            <div className="component-header name pure-u-7-8">
+                <Link 
+                    className="component-name" 
+                    to={{
+                        pathname: "/scp-website/packageinfo",
+                        packageName: packages[p.item.packageIndex].package.name
+                    }}>
+                    <h3>{p.item.name}</h3>
+                </Link>
             </div>
-            <div className="grid-item-content">
-                <p style={style.description}>{p.item.description}</p>
-                {packages[p.item.packageIndex].package.keywords ? <>
-                    <ul style={ulStyle}>
-                        {packages[p.item.packageIndex].package.keywords.map((i) => <li style={liStyle} key={i}><a href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a></li>)}
-                    </ul>
-                </> : null}
-                <div style={publisherStyle}><GithubCard username={packages[p.item.packageIndex].package.publisher.username} avatarSize={{ width: '22px' }} /><span data-tip={new Date(packages[p.item.packageIndex].package.date)} style={versionStyle}>published {packages[p.item.packageIndex].package.version} &bull; {moment(packages[p.item.packageIndex].package.date).startOf('day').fromNow()}</span></div>
-                <ReactTooltip />
+            <div className="component-header version pure-u-1-8">
+                <VerificationMarker verifiedVersion={verifiedPackages[packages[p.item.packageIndex].package.name]} p={packages[p.item.packageIndex].package}/>
+            </div>
+            <div className="component-content description pure-u-1">
+                <p>{p.item.description}</p>
+            </div>
+            <div className="component-footer keywords pure-u-1">
+                {packages[p.item.packageIndex].package.keywords.map((i) => 
+                    <Badge className="keyword-badge" variant="primary">
+                        <a className="keyword-link" href={`https://www.npmjs.com/search?q=keywords:${i}`}>{i}</a>
+                    </Badge>
+                )}
+            </div>
+            <div className="component-footer publisher pure-u-7-8">
+                <div className="package-publisher">{packages[p.item.packageIndex].package.name} <GithubCard username={packages[p.item.packageIndex].package.publisher.username} avatarSize={{ width: '22px' }} /><span data-tip={new Date(packages[p.item.packageIndex].package.date)}>published {packages[p.item.packageIndex].package.version} &bull; {moment(packages[p.item.packageIndex].package.date).startOf('day').fromNow()}</span></div>
+            </div>
+            <div className="component-footer npm-link pure-u-1-8">
+                <Link className="npm-link-icon" target="_blank" to={{ pathname: packages[p.item.packageIndex].package.links.npm }}><img alt="NPM" src={process.env.PUBLIC_URL + '/img/npm-logo-red-32px.png'} /></Link>
             </div>
         </div>
     )
