@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 
 
-const ComponentList = (props) => {
+const ComponentList = () => {
     const dispatch = useDispatch()
     const searchedComponents = useSelector(state => state.components.searched);
     const displayOffset = useSelector(state => state.filter.displayOffset)
