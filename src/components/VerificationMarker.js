@@ -1,5 +1,20 @@
 import React from 'react'
-import '../stylesheets/component.css'
+import '../stylesheets/verification-marker.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
+
+const versionStyle = {
+    fontSize: '16px',
+    paddingBottom: 0
+}
+
+const verifiedStyle = {
+    color: 'green'
+}
+
+const nonVerifiedStyle = {
+    color: 'gray'
+}
 
 const VerificationMarker = (props) => {
 
@@ -13,17 +28,17 @@ const VerificationMarker = (props) => {
             //The current version is verified
             return (
                 <div>
-                    <p className="version"><span className="dot-green"></span> {verifiedVersion}</p>
+                    <p className="version" style={versionStyle}><FontAwesomeIcon style={verifiedStyle} icon={faCircle} className="fa-xs" /> {verifiedVersion}</p>
                 </div>
             )
         } else if (verifiedVersion < p.version) {
             return (
                 <div>
                     <div>
-                        <p className="version"><span className="dot-grey"></span> {p.version}</p>
+                        <p className="version" style={versionStyle}><FontAwesomeIcon style={nonVerifiedStyle} icon={faCircle} className="fa-xs" /> {p.version}</p>
                     </div>
                     <div>
-                        <p className="version"><span className="dot-green"></span> {verifiedVersion}</p>
+                        <p className="version" style={versionStyle}><FontAwesomeIcon style={verifiedStyle} icon={faCircle} className="fa-xs" /> {verifiedVersion}</p>
                     </div>
                 </div>
             )
@@ -31,10 +46,10 @@ const VerificationMarker = (props) => {
             return (
                 <div>
                     <div>
-                        <p className="version"><span className="dot-green"></span> {verifiedVersion}</p>
+                        <p className="version" style={versionStyle}><FontAwesomeIcon style={verifiedStyle} icon={faCircle} className="fa-xs" /> {verifiedVersion}</p>
                     </div>
                     <div>
-                        <p className="version"><span className="dot-grey"></span> {p.version}</p>
+                        <p className="version" style={versionStyle}><FontAwesomeIcon style={nonVerifiedStyle} icon={faCircle} className="fa-xs" /> {p.version}</p>
                     </div>
                 </div>
             )
@@ -43,7 +58,7 @@ const VerificationMarker = (props) => {
         //Package is not verified
         return (
             <div>
-                <p className="version"><span className="dot-grey"></span> {p.version}</p>
+                <p className="version" style={versionStyle}><span className="dot-grey"></span> {p.version}</p>
             </div>
         )
     }
