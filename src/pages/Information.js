@@ -59,11 +59,11 @@ const Information = () => {
     return (
         <>
             <div className="pure-g content">
-                <div className="pure-u-1-1 pure-u-md-4-5">
+                <div className="pure-u-1-1 pure-u-md-1-1">
                     <div className="l-box">
                         <h1>Information</h1>
                         <div className="pure-g">
-                            <div className="pure-u-1-4">
+                            <div className="pure-u-1-5">
                                 <div className="website-info">
                                     <a href="/#" onClick={(event) => { handleSelect(event,"website-info") }}>
                                         Component search
@@ -75,7 +75,7 @@ const Information = () => {
                                     </a>
                                 </div>
                             </div>
-                            <div className="pure-u-3-4">
+                            <div className="pure-u-4-5">
                                 { (state.section === "website-info") ? websiteInfo : null }
                                 { (state.section === "cli-info") ? cliInfo : null }
                             </div>
