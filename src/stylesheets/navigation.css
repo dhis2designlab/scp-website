@@ -2,7 +2,6 @@
     height: 40px;
 }
 
-
 .general {
     background-color: #292E49;
     width: 100%;
@@ -19,25 +18,20 @@
     width: 100px;
 }
 
-.landing-style li a,
-.general li a {
+.landing-style li a, .general li a {
     color: white;
     text-align: center;
 }
 
-.landing-style .pure-menu-active > .pure-menu-link, .pure-menu-link:hover, .pure-menu-link:focus,
-.general .pure-menu-active > .pure-menu-link, .pure-menu-link:hover, .pure-menu-link:focus {
+.landing-style .pure-menu-active>.pure-menu-link, .pure-menu-link:hover, .pure-menu-link:focus, .general .pure-menu-active>.pure-menu-link, .pure-menu-link:hover, .pure-menu-link:focus {
     background-color: transparent;
-
 }
 
-.landing-style li a:hover,
-.general li a:hover {
+.landing-style li a:hover, .general li a:hover {
     background-color: none;
 }
 
-.landing-style li::before,
-.general li::before  {
+.landing-style li::before, .general li::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -50,8 +44,28 @@
     transition: all .35s ease-in-out;
 }
 
-.landing-style li:hover::before,
-.general li:hover::before {
+.landing-style li:hover::before, .general li:hover::before {
     visibility: visible;
     transform: scaleX(1);
+}
+
+@media only screen and (min-width: 600px) {
+    .navbar-brand {
+        margin-right: 8.5rem;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 450px) {
+    .navbar-brand {
+        margin-right: -1em;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .navbar-brand {
+        margin-right: -1em;
+    }
+    #logo {
+        width:80%;
+    }
 }

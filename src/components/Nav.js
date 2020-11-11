@@ -28,8 +28,8 @@ const Nav = (props) => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" variant="dark" style={onLanding ? navBarBackground.transparent : navBarBackground.dark}>
-        <Navbar.Brand as={Link} to="/scp-website"><img alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
-        <div className="ml-auto mr-3 order-lg-second w-50" style={{ width: '200px' }}>
+        <Navbar.Brand as={Link} to="/scp-website"><img id="logo" alt="DHIS2 logo" src={process.env.PUBLIC_URL + '/img/dhis2-logo.png'} /></Navbar.Brand>
+        <div className="order-lg-second w-50" >
           <SearchField searchButtonText="Search" navigateTo={() => history.push("/scp-website/")} />
         </div>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

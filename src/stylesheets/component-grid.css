@@ -1,11 +1,16 @@
 .grid-item-wrapper{
-    padding: 0.5em;
+    padding: 0em;
+}
+
+.grid-item {
+    margin: 10px;
 }
 
 @media only screen and (min-width: 2000px) {
     /* For mobile phones: */
     .grid-item-wrapper{
-        padding: 1em;
+        padding: 1.5em;
+        padding-left: 0;
     }
     
 }
