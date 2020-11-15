@@ -1,13 +1,14 @@
-.drop-down {
-    float:left;
+.verifiedFilter {
+    margin-left: auto;
 }
 
 
 @media only screen and (max-width: 600px) {
-    .dropdown {
-        margin-bottom:15px;
+    .dropdown-button {
+        margin-bottom: 10px;
     }
-    .form-check {
-        margin-bottom:10px;
+    .verifiedFilter {
+        margin-left: 0;
+        margin-bottom: 10px;
     }
   }

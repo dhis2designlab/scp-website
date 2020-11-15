@@ -30,27 +30,8 @@ const FilterGroup = () => {
     }
 
     return (
-        <div className="pure-g">
-            <div className="pure-u-1-1 pure-u-md-4-5"><div className="drop-down"><DropdownButton id="dropdown-basic-button" title={`Framework: ${framework}`} className="mr-1 drop-down">
-                <Dropdown.Item onClick={() => handleFramework('all')}>All</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFramework('react')}>React</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFramework('angular')}>Angular</Dropdown.Item>
-            </DropdownButton></div><VersionFilter className="filter-item" allDhis2Versions={allDhis2Versions} dhis2Versions={dhis2Versions} handleDhis2Version={handleDhis2Version} dhis2VersionsById={dhis2VersionsById} /></div>
-            <div className=" pure-u-1 pure-u-md-1-5 form-check"><FormCheck
-                id="verified-check"
-                label="Show only verified components"
-                inline={true}
-                className="ml-auto"
-                type="checkbox"
-                checked={onlyVerified}
-                onChange={handleVerified}
-            /></div>
-        </div>
-
-        /**
-         * return (
-        <div className="d-flex flex-row">
-            <DropdownButton id="dropdown-basic-button" title={`Framework: ${framework}`} className="mr-1">
+        <div className="d-flex flex-wrap">
+            <DropdownButton id="dropdown-basic-button" title={`Framework: ${framework}`} className="mr-1 dropdown-button">
                 <Dropdown.Item onClick={() => handleFramework('all')}>All</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleFramework('react')}>React</Dropdown.Item>
                 <Dropdown.Item onClick={() => handleFramework('angular')}>Angular</Dropdown.Item>
@@ -60,14 +41,12 @@ const FilterGroup = () => {
                 id="verified-check" 
                 label="Show only verified components" 
                 inline={true} 
-                className="ml-auto"
+                className="verifiedFilter"
                 type="checkbox"
                 checked={onlyVerified}
                 onChange={handleVerified}
             />
         </div>
-    )
-         */
     )
 }
 

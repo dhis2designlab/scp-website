@@ -71,7 +71,7 @@ const CheckElement = React.forwardRef(
 
 const VersionFilter = ({allDhis2Versions, dhis2Versions, handleDhis2Version, dhis2VersionsById}) => {
     return(
-        <Dropdown>
+        <Dropdown className="mr-1 dropdown-button">
             <Dropdown.Toggle variant="info" id="dropdown-basic">
                 DHIS2 Version
             </Dropdown.Toggle>
