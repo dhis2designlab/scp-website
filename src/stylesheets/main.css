@@ -6,12 +6,28 @@ html, body {
     margin: 0;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 62.5px); /*100% of the viewport height - header height*/
+}
+
 .content {
+    flex: 1 0 auto;
     font-family: 'Open Sans', serif;
     font-size: 1rem;
     padding: 1.5em;
     margin-left: 2em;
     margin-right: 2em;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
 }
 
 .search-style {

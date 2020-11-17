@@ -1,9 +1,16 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { setDisplayOffset } from '../actions/filters'
 import 'purecss/build/pure.css';
 import '../stylesheets/main.css';
 import '../stylesheets/search.css'
+import '../stylesheets/explore.css'
+import '../stylesheets/package-list.css'
 import ComponentList from '../components/ComponentList'
 import FilterGroup from '../components/FilterGroup'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import ReactPaginate from 'react-paginate'
 
 const packageListStyle = {
   item: {
@@ -17,8 +24,22 @@ const packageListStyle = {
 }
 
 const Search = () => {
+
+  const dispatch = useDispatch()
+  const searchedComponents = useSelector(state => state.components.searched);
+  const componentsPerPage = 5; //Hardcoded
+
+  if (searchedComponents.length === 0) return (<p>No hits</p>)
+
+  const handlePageClick = (data) => {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * componentsPerPage);
+    dispatch(setDisplayOffset(offset))
+  };
+
+
   return (
-    <>
+    <div className="wrapper">
       <div className="pure-g content">
         <div className="pure-u-1">
           <div className="l-box">
@@ -31,7 +52,21 @@ const Search = () => {
           </div>
         </div>
       </div>
-    </>
+      <div className="footer pure-u-1">
+        <div id="react-paginate" className="footer-content">
+          <ReactPaginate
+            pageCount={Math.ceil(searchedComponents.length / componentsPerPage)}
+            previousLabel={<FontAwesomeIcon icon={faAngleDoubleLeft} />}
+            nextLabel={<FontAwesomeIcon icon={faAngleDoubleRight} />}
+            onPageChange={handlePageClick}
+            breakClassName={'break-me'}
+            containerClassName={'pagination'}
+            subContainerClassName={'pages pagination'}
+            activeClassName={'active'}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
