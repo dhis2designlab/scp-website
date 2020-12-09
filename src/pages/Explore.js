@@ -27,9 +27,7 @@ const Search = () => {
 
   const dispatch = useDispatch()
   const searchedComponents = useSelector(state => state.components.searched);
-  const componentsPerPage = 5; //Hardcoded
-
-  if (searchedComponents.length === 0) return (<p>No hits</p>)
+  const componentsPerPage = 6; //Hardcoded
 
   const handlePageClick = (data) => {
     let selected = data.selected;
@@ -48,7 +46,7 @@ const Search = () => {
         </div>
         <div className="pure-u-1">
           <div className="l-box">
-            <ComponentList style={packageListStyle} />
+            <ComponentList style={packageListStyle} componentsPerPage={componentsPerPage} />
           </div>
         </div>
       </div>

@@ -6,10 +6,9 @@ import '../stylesheets/explore.css'
 import '../stylesheets/package-list.css'
 
 
-const ComponentList = () => {
+const ComponentList = ({ componentsPerPage }) => {
     const searchedComponents = useSelector(state => state.components.searched);
     const displayOffset = useSelector(state => state.filter.displayOffset)
-    const componentsPerPage = 5; //Hardcoded
 
     if (searchedComponents.length === 0) return (<p>No hits</p>)
 

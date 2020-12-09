@@ -103,7 +103,7 @@ const ComponentCard = props => {
             <div className="pure-g" style={componentStyle.dataStyle}>
                 <div className="pure-u-4-5" style={componentStyle.componentTitleStyle}><Link style={packageHeaderStyle} to={{ pathname: packages[p.item.packageIndex].package.links.npm }} target="_blank"><h4 style={{ display: 'inline' }}>{p.item.name}</h4></Link></div>
                 <div className="pure-u-1-5" style={componentStyle.versionStyle}>
-                    <VerificationMarker verifiedVersion={verifiedPackages[packages[p.item.packageIndex].package.name]} p={packages[p.item.packageIndex].package} />
+                    <VerificationMarker verifiedArray={verifiedPackages[packages[p.item.packageIndex].package.name]} p={packages[p.item.packageIndex].package} />
                 </div>
 
                 <div className="pure-u-5-5 grid-item-content" style={componentStyle.descriptionStyle}>

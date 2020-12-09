@@ -11,6 +11,7 @@ export const searchComponents = () => (dispatch, getState) => {
     const filteredList = applyFilters(all, filters, packages)
     const searchedList = search(filteredList, filters.searchTerm)
 
+    dispatch(setDisplayOffset(0))
     dispatch({type: components.searchList, payload: searchedList})
 }
 
